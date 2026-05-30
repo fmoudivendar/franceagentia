@@ -154,7 +154,12 @@
 
     /* NAV */
     nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 80px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); }
-    .logo img { height: 52px; border-radius: 12px; }
+    .logo img { height: 44px; border-radius: 10px; }
+    .logo-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-name { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
+    .logo-name .fr-bleu { color: #002395; }
+    .logo-name .fr-blanc { color: #ffffff; }
+    .logo-name .fr-rouge { color: #ED2939; }
     .nav-links { display: flex; gap: 40px; align-items: center; }
     .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
     .nav-links a:hover { opacity: 0.8; }
@@ -458,7 +463,7 @@
   </a>
 
   <nav>
-    <div class="logo"><a href="index.html"><img src="/assets/logo.png" onerror="this.src='https://i.imgur.com/bKQ6uBz.jpg'" alt="France Agent IA — Automatisation WhatsApp PME"></a></div>
+    <div class="logo"><a href="index.html" class="logo-brand"><img src="/assets/logo.png" onerror="this.src='https://i.imgur.com/bKQ6uBz.jpg'" alt="France Agent IA — Automatisation WhatsApp PME"><span class="logo-name"><span class="fr-bleu">France</span> <span class="fr-blanc">Agent</span> <span class="fr-rouge">IA</span></span></a></div>
     <div class="nav-links">
       <a href="#solutions">Solutions</a>
       <a href="#avantages">Avantages</a>
