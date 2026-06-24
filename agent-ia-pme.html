@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent IA pour PME : définition, fonctionnement, cas d'usage | France Agent IA</title>
+  <meta name="description" content="Qu'est-ce qu'un agent IA pour PME ? Définition claire, fonctionnement technique simplifié, comparatif avec chatbot et assistant humain, cas d'usage concrets.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://franceagentia.com/agent-ia-pme.html">
+  <meta property="og:title" content="Agent IA pour PME : définition, fonctionnement, cas d'usage">
+  <meta property="og:description" content="Qu'est-ce qu'un agent IA pour PME ? Définition claire, fonctionnement technique simplifié, comparatif avec chatbot et assistant humain, cas d'usage concrets.">
+  <meta property="og:url" content="https://franceagentia.com/agent-ia-pme.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="France Agent IA">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Agent IA pour PME","url":"https://franceagentia.com/agent-ia-pme.html","description":"Définition, fonctionnement et cas d'usage des agents IA pour les TPE et PME françaises."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"DefinedTerm","name":"Agent IA","description":"Programme logiciel capable de comprendre des messages en langage naturel et d'y répondre de façon adaptée, automatiquement, sans intervention humaine à chaque échange.","url":"https://franceagentia.com/agent-ia-pme.html","inDefinedTermSet":{"@type":"DefinedTermSet","name":"Glossaire de l'automatisation IA","url":"https://franceagentia.com/glossaire.html"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://franceagentia.com/"},{"@type":"ListItem","position":2,"name":"Agent IA pour PME","item":"https://franceagentia.com/agent-ia-pme.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quelle différence entre un agent IA et un chatbot classique ?","acceptedAnswer":{"@type":"Answer","text":"Un chatbot classique suit un arbre de décision figé et répond à des mots-clés prédéfinis. Un agent IA comprend le sens d'un message rédigé librement, s'adapte au contexte et sait quand transmettre à un humain."}},{"@type":"Question","name":"Un agent IA peut-il remplacer un employé ?","acceptedAnswer":{"@type":"Answer","text":"Non. Un agent IA remplace les tâches répétitives et prévisibles. Il ne remplace pas le jugement humain, la négociation, la gestion de l'imprévu ou la relation de confiance sur le long terme."}},{"@type":"Question","name":"Combien de temps pour mettre en place un agent IA PME ?","acceptedAnswer":{"@type":"Answer","text":"France Agent IA configure votre agent en 48h. Vous n'avez besoin d'aucune compétence technique."}},{"@type":"Question","name":"L'agent IA fonctionne-t-il sur WhatsApp ?","acceptedAnswer":{"@type":"Answer","text":"Oui. L'agent est connecté à votre numéro WhatsApp Business existant via l'API officielle Meta."}},{"@type":"Question","name":"Quels métiers bénéficient le plus d'un agent IA ?","acceptedAnswer":{"@type":"Answer","text":"Tous les métiers qui reçoivent des demandes répétitives en volume : immobilier, artisanat, restaurants, séminaires, agences marketing, syndics de copropriété, professions libérales."}}]}</script>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#0a1628;color:white;line-height:1.8}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:15px 80px;background:rgba(10,22,40,0.95);backdrop-filter:blur(10px);position:sticky;top:0;z-index:100}
+    .logo-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-brand img{height:44px;border-radius:10px}
+    .logo-name{font-size:26px;font-weight:800;letter-spacing:-0.5px}
+    .logo-name .fr-bleu{color:#002395}.logo-name .fr-blanc{color:#fff}.logo-name .fr-rouge{color:#ED2939}
+    .nav-links{display:flex;gap:40px;align-items:center}
+    .nav-links a{color:white;text-decoration:none;font-weight:500}
+    .btn-demo{background:linear-gradient(135deg,#25d366,#1da851);color:white;padding:14px 28px;border-radius:50px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:8px}
+    article.article{max-width:820px;margin:0 auto;padding:80px 30px 100px}
+    .back-link{display:inline-flex;align-items:center;gap:8px;color:#94a3b8;text-decoration:none;margin-bottom:40px}
+    .tag{display:inline-block;background:rgba(96,165,250,0.1);color:#60a5fa;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:20px}
+    h1{font-size:42px;font-weight:800;line-height:1.15;margin-bottom:30px}
+    .meta{color:#64748b;font-size:14px;margin-bottom:40px}
+    h2{font-size:26px;font-weight:700;margin:50px 0 20px}
+    h3{font-size:18px;font-weight:700;margin:30px 0 12px;color:#e2e8f0}
+    p{color:#94a3b8;margin-bottom:20px;line-height:1.8}
+    ul,ol{color:#94a3b8;margin:0 0 20px 25px}
+    li{margin-bottom:10px;line-height:1.7}
+    strong{color:white}
+    table{width:100%;border-collapse:collapse;margin:30px 0}
+    th{background:rgba(255,255,255,0.06);color:white;padding:12px 16px;text-align:left;font-size:14px}
+    td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);color:#94a3b8;font-size:14px}
+    .highlight-box{background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);border-radius:16px;padding:24px 28px;margin:30px 0}
+    .highlight-box p{color:#93c5fd;margin:0}
+    .cta-box{background:linear-gradient(135deg,rgba(37,211,102,0.1),rgba(29,168,81,0.05));border:1px solid rgba(37,211,102,0.2);border-radius:20px;padding:40px;text-align:center;margin:60px 0}
+    .cta-box h3{color:white;font-size:22px;margin-bottom:12px}
+    .cta-box p{color:#94a3b8;margin-bottom:24px}
+    .btn-primary{background:linear-gradient(135deg,#25d366,#1da851);color:white;padding:16px 36px;border-radius:50px;text-decoration:none;font-weight:700;display:inline-block}
+    .faq{margin:60px 0}
+    .faq h2{margin-bottom:30px}
+    .faq-item{border-bottom:1px solid rgba(255,255,255,0.08);padding:24px 0}
+    .faq-item h3{color:white;font-size:17px;margin:0 0 12px}
+    .faq-item p{margin:0}
+    footer{background:#0a1220;padding:40px 80px;text-align:center;border-top:1px solid rgba(255,255,255,0.08)}
+    footer p{color:#475569;font-size:14px}
+    footer a{color:#64748b;text-decoration:none;margin:0 15px}
+    footer a:hover{color:white}
+    @media(max-width:768px){nav{padding:15px 20px}.nav-links a:not(.btn-demo){display:none}article.article{padding:40px 20px 60px}h1{font-size:32px}footer{padding:30px 20px}footer a{display:block;margin:10px 0}}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo"><a href="index.html" class="logo-brand"><img src="/assets/logo.png" onerror="this.src='https://i.imgur.com/bKQ6uBz.jpg'" alt="France Agent IA"><span class="logo-name"><span class="fr-bleu">France</span> <span class="fr-blanc">Agent</span> <span class="fr-rouge">IA</span></span></a></div>
+    <div class="nav-links"><a href="index.html#solutions">Solutions</a><a href="blog.html">Blog</a><a href="knowledge-center.html">Knowledge Center</a><a href="https://wa.me/33601347652?text=Bonjour,%20je%20souhaite%20tester%20la%20d%C3%A9mo%20!" class="btn-demo"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.477 2 2 6.477 2 12c0 1.99.578 3.842 1.577 5.4L2 22l4.744-1.545A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.521 2 11.998 2z"/></svg>Testez, je vous réponds</a></div>
+  </nav>
+  <article class="article">
+    <a href="index.html" class="back-link">← Retour à l'accueil</a>
+    <div class="tag">Pilier — Définition</div>
+    <h1>Agent IA pour PME : définition, fonctionnement, cas d'usage</h1>
+    <p class="meta">France Agent IA · 2026 · 8 min de lecture</p>
+    <p><strong>Un agent IA pour PME est un programme capable de comprendre des messages en langage naturel, de qualifier des demandes, de répondre aux questions fréquentes et de prendre des rendez-vous — automatiquement, 24h/24, sans intervention humaine sur les tâches répétitives.</strong></p>
+    <p>Ce n'est pas un bot avec des menus à touche, ni un simple répondeur automatique. C'est un système qui comprend ce que le client dit, identifie son intention, et y répond de façon adaptée — ou vous transmet la conversation quand la situation dépasse son périmètre.</p>
+    <h2>Définition : qu'est-ce qu'un agent IA ?</h2>
+    <p>Un agent IA (agent à intelligence artificielle) est un programme logiciel qui reçoit des messages en langage naturel, en comprend le sens grâce à un LLM (modèle de langage), et exécute des actions en conséquence : répondre, qualifier, envoyer un document, proposer un créneau, alerter un humain.</p>
+    <p>La différence fondamentale avec un chatbot classique : le chatbot suit un script figé. L'agent IA comprend le sens, même si le client ne formule pas sa demande exactement comme prévu. Voir aussi : <a href="glossaire.html" style="color:#60a5fa;">glossaire complet des termes</a>.</p>
+    <h2>Comment fonctionne un agent IA concrètement</h2>
+    <ol>
+      <li><strong>Réception du message</strong> : le client envoie un message sur WhatsApp, téléphone ou formulaire.</li>
+      <li><strong>Identification de l'intention (intent)</strong> : l'agent détecte ce que le client veut (demander un prix, prendre un RDV, signaler un problème…).</li>
+      <li><strong>Réponse adaptée</strong> : il répond selon la base de connaissance configurée pour votre activité.</li>
+      <li><strong>Qualification si nécessaire</strong> : il pose les questions utiles (budget, besoin, délai, urgence).</li>
+      <li><strong>Action ou escalade</strong> : il propose un créneau, envoie un document, ou vous transmet la conversation avec le contexte complet.</li>
+    </ol>
+    <h2>Comparatif : Agent IA / Chatbot classique / Assistant humain</h2>
+    <table>
+      <tr><th></th><th>Chatbot classique</th><th>Agent IA</th><th>Assistant humain</th></tr>
+      <tr><td>Comprend le langage naturel</td><td>Non (mots-clés)</td><td>Oui</td><td>Oui</td></tr>
+      <tr><td>Disponibilité</td><td>24h/24</td><td>24h/24</td><td>Heures de bureau</td></tr>
+      <tr><td>Qualifie un prospect</td><td>Partiellement</td><td>Oui</td><td>Oui</td></tr>
+      <tr><td>Gère l'imprévu</td><td>Non</td><td>Partiel (escalade)</td><td>Oui</td></tr>
+      <tr><td>Jugement et initiative</td><td>Non</td><td>Non</td><td>Oui</td></tr>
+      <tr><td>Coût marginal par échange</td><td>Très faible</td><td>Très faible</td><td>Élevé</td></tr>
+    </table>
+    <h2>Métiers qui bénéficient le plus d'un agent IA</h2>
+    <ul>
+      <li><a href="assistant-ia-immobilier.html" style="color:#60a5fa;">Agences immobilières</a> : qualification des leads acheteurs et vendeurs avant le premier contact</li>
+      <li><a href="assistant-telephonique-ia.html" style="color:#60a5fa;">Artisans et indépendants</a> : gérer les appels manqués et les demandes de devis</li>
+      <li><a href="assistant-ia-seminaire-evenement.html" style="color:#60a5fa;">Organisateurs d'événements</a> : cycle participant automatique (confirmations, rappels, replay)</li>
+      <li><a href="assistant-ia-mediabuyer.html" style="color:#60a5fa;">Mediabuyers et agences</a> : réponse instantanée aux leads Meta avant qu'ils refroidissent</li>
+      <li><a href="assistant-ia-syndic-copropriete.html" style="color:#60a5fa;">Syndics de copropriété</a> : réponses aux questions répétitives des résidents</li>
+    </ul>
+    <h2>Les limites d'un agent IA — ce qu'il ne fait pas</h2>
+    <ul>
+      <li>Il ne prend pas de décision engageant votre entreprise (signature, tarif, contrat)</li>
+      <li>Il ne gère pas les situations conflictuelles ou émotionnellement complexes</li>
+      <li>Il ne remplace pas le jugement humain sur les cas imprévus</li>
+      <li>Il peut mal interpréter une formulation très ambigüe et le signalère</li>
+      <li>Il n'est pas parfait à 100% — il est conçu pour escalader plutôt que d'improviser</li>
+    </ul>
+    <div class="highlight-box"><p>💡 <strong>Règle de base</strong> : un agent IA bien configuré ne tente pas de répondre à tout. Il résout le répétitif et vous transmet l'exceptionnel avec le contexte complet.</p></div>
+    <h2>Comment choisir un prestataire d'agent IA</h2>
+    <p>Quelques questions à poser avant de signer :</p>
+    <ul>
+      <li>Le prestataire configure-t-il l'agent selon votre activité ou propose-t-il un modèle générique ?</li>
+      <li>Peut-on tester l'agent sur des scénarios réels avant la mise en production ?</li>
+      <li>Comment les erreurs de l'agent sont-elles gérées et corrigées ?</li>
+      <li>L'agent est-il connecté à l'API officielle WhatsApp ou à une solution non officielle ?</li>
+      <li>Qui est responsable si l'agent envoie une réponse incorrecte à un client ?</li>
+    </ul>
+    <a href="https://wa.me/33601347652?text=Bonjour,%20je%20veux%20tester%20un%20agent%20IA%20pour%20ma%20PME%20!" style="display:inline-block;margin:30px 0;background:linear-gradient(135deg,#25d366,#1da851);color:white;padding:16px 32px;border-radius:50px;text-decoration:none;font-weight:700;">💬 Tester un agent IA pour votre activité</a>
+    <div class="cta-box">
+      <h3>Testez en 30 secondes</h3>
+      <p>Découvrez comment un agent IA gère une vraie conversation sur WhatsApp.</p>
+      <a href="https://wa.me/33601347652?text=Bonjour,%20je%20veux%20tester%20un%20agent%20IA%20pour%20ma%20PME%20!" class="btn-primary">💬 Testez, je vous réponds →</a>
+    </div>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:30px;margin:50px 0;">
+      <p style="color:#60a5fa;font-weight:700;margin-bottom:15px;">📚 À lire ensuite</p>
+      <ul style="list-style:none;margin:0;padding:0;">
+        <li style="margin-bottom:10px;"><a href="reponse-automatique-whatsapp-entreprise.html" style="color:#94a3b8;text-decoration:none;">→ Réponse automatique WhatsApp — le pilier complet</a></li>
+        <li style="margin-bottom:10px;"><a href="qualification-lead-whatsapp.html" style="color:#94a3b8;text-decoration:none;">→ Qualification automatique des leads WhatsApp</a></li>
+        <li style="margin-bottom:10px;"><a href="agent-ia-vs-secretaire.html" style="color:#94a3b8;text-decoration:none;">→ Agent IA vs secrétaire — le comparatif honnête</a></li>
+        <li style="margin-bottom:10px;"><a href="glossaire.html" style="color:#94a3b8;text-decoration:none;">→ Glossaire : LLM, intent, webhook, lead scoring</a></li>
+        <li><a href="knowledge-center.html" style="color:#94a3b8;text-decoration:none;">→ Knowledge Center — toutes les ressources</a></li>
+      </ul>
+    </div>
+    <section class="faq" id="faq">
+      <h2>Questions fréquentes</h2>
+      <div class="faq-item"><h3>Quelle différence entre un agent IA et un chatbot classique ?</h3><p>Un chatbot classique suit un arbre de décision figé et répond à des mots-clés prédéfinis. Un agent IA comprend le sens d'un message rédigé librement, s'adapte au contexte et sait quand transmettre à un humain. La différence est sensible dès les premiers échanges.</p></div>
+      <div class="faq-item"><h3>Un agent IA peut-il remplacer un employé ?</h3><p>Non. Un agent IA remplace les tâches répétitives et prévisibles. Il ne remplace pas le jugement humain, la négociation ou la gestion de l'imprévu. Il libère du temps pour que les humains se concentrent sur les tâches à forte valeur.</p></div>
+      <div class="faq-item"><h3>Combien de temps pour mettre en place un agent IA PME ?</h3><p>France Agent IA configure votre agent en 48h. Vous n'avez besoin d'aucune compétence technique. Vous validez les réponses avant la mise en production.</p></div>
+      <div class="faq-item"><h3>L'agent IA fonctionne-t-il sur WhatsApp ?</h3><p>Oui. L'agent est connecté à votre numéro WhatsApp Business existant via l'API officielle Meta. Vos clients continuent d'utiliser le même numéro.</p></div>
+      <div class="faq-item"><h3>Quels métiers bénéficient le plus d'un agent IA ?</h3><p>Tous les métiers qui reçoivent des demandes répétitives en volume : immobilier, artisanat, restaurants, séminaires, agences marketing, syndics de copropriété, professions libérales.</p></div>
+    </section>
+  </article>
+  <footer>
+    <p>© 2026 France Agent IA. Tous droits réservés.</p>
+    <p style="margin-top:15px;"><a href="mentions-legales.html">Mentions légales</a><a href="a-propos.html">À propos</a><a href="knowledge-center.html">Knowledge Center</a><a href="cgv.html">CGV</a><a href="politique-confidentialite.html">Politique de confidentialité</a></p>
+  </footer>
+</body>
+</html>
