@@ -53,6 +53,7 @@
       "name": "France"
     },
     "priceRange": "€€",
+    "founder": {"@type": "Person", "@id": "https://franceagentia.com/a-propos.html#felix", "name": "Félix Moudivendar", "jobTitle": "Fondateur, France Agent IA"},
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
@@ -76,7 +77,8 @@
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Agent IA Séminaires & Événements", "url": "https://franceagentia.com/assistant-ia-seminaire-evenement.html"}},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Agent IA Immobilier", "url": "https://franceagentia.com/assistant-ia-immobilier.html"}},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Qualification Leads WhatsApp", "url": "https://franceagentia.com/qualification-lead-whatsapp.html"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Assistant Téléphonique IA", "url": "https://franceagentia.com/assistant-telephonique-ia.html"}}
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Assistant Téléphonique IA", "url": "https://franceagentia.com/assistant-telephonique-ia.html"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Agent IA Syndics & Copropriétés", "url": "https://franceagentia.com/assistant-ia-syndic-copropriete.html"}}
       ]
     }
   }
@@ -139,6 +141,12 @@
     ]
   }
   </script>
+
+  <!-- Schema.org : WebSite (entité site, sans SearchAction car pas de moteur de recherche interne) -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://franceagentia.com/#website", "url": "https://franceagentia.com/", "name": "France Agent IA", "publisher": {"@id": "https://franceagentia.com/#organization"}, "inLanguage": "fr-FR"}</script>
+
+  <!-- Schema.org : Person (fondateur, E-E-A-T) -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "@id": "https://franceagentia.com/a-propos.html#felix", "name": "Félix Moudivendar", "jobTitle": "Fondateur, France Agent IA", "worksFor": {"@id": "https://franceagentia.com/#organization"}, "url": "https://franceagentia.com/a-propos.html", "knowsAbout": ["Automatisation WhatsApp", "Agents IA conversationnels", "Télécommunications", "Qualification de leads"]}</script>
 
   <link rel="icon" type="image/png" href="/assets/favicon.png" onerror="this.href='https://i.imgur.com/bKQ6uBz.jpg'">
   <link rel="apple-touch-icon" href="/assets/favicon.png">
@@ -691,15 +699,17 @@
         <h4>Solutions</h4>
         <a href="assistant-ia-seminaire-evenement.html">Séminaires & Événements</a>
         <a href="assistant-ia-immobilier.html">Immobilier</a>
+        <a href="assistant-ia-syndic-copropriete.html">Syndics & Copropriétés</a>
         <a href="assistant-ia-mediabuyer.html">Mediabuyers</a>
         <a href="qualification-lead-whatsapp.html">Qualification leads WhatsApp</a>
         <a href="assistant-telephonique-ia.html">Assistant téléphonique IA</a>
         <a href="reponse-automatique-whatsapp-entreprise.html">Réponse WhatsApp automatique</a>
+        <a href="agent-ia-pme.html">Agent IA pour PME — le guide</a>
       </div>
       <div class="footer-column">
         <h4>Ressources</h4>
         <a href="blog.html">Blog</a>
-        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="mentions-legales.html">Mentions légales</a><a href="a-propos.html">À propos</a><a href="knowledge-center.html">Knowledge Center</a>
         <a href="cgv.html">CGV</a>
         <a href="politique-confidentialite.html">Politique de confidentialité</a>
       </div>
