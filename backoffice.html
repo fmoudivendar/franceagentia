@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>France Agent IA — Back-office</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f5f6fa;color:#1a1d23;height:100vh;display:flex;overflow:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#f0f0f0}::-webkit-scrollbar-thumb{background:#d0d5e0;border-radius:2px}
+.sidebar{width:240px;flex-shrink:0;background:#fff;border-right:1px solid #eaecf0;display:flex;flex-direction:column;box-shadow:2px 0 8px rgba(0,0,0,0.04)}
+.logo{padding:20px 16px 16px;border-bottom:1px solid #eaecf0;display:flex;align-items:center;gap:10px}
+.logo-name{font-size:13px;font-weight:600;color:#1a1d23}
+.logo-sub{font-size:10px;color:#9ba3af;margin-top:1px}
+.nav{padding:12px 8px;flex:1;overflow-y:auto}
+.nav-section{margin-bottom:4px}
+.nav-label{font-size:10px;color:#9ba3af;padding:8px 10px 4px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13px;color:#6b7280;transition:all 0.12s;border:none;background:none;width:100%;text-align:left;margin-bottom:1px}
+.nav-item:hover{background:#f5f6fa;color:#1a1d23}
+.nav-item.active{background:#eff4ff;color:#1d6bf3;font-weight:500}
+.nav-item i{font-size:16px;width:18px;flex-shrink:0}
+.badge{font-size:10px;padding:1px 7px;border-radius:20px;font-weight:500;margin-left:auto}
+.badge-blue{background:#eff4ff;color:#1d6bf3}
+.badge-green{background:#ecfdf5;color:#059669}
+.badge-orange{background:#fff7ed;color:#d97706}
+.sidebar-footer{padding:12px 8px;border-top:1px solid #eaecf0}
+.client-chip{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:#f9fafb;cursor:pointer;border:1px solid #eaecf0}
+.client-avatar{width:32px;height:32px;border-radius:8px;background:#1d6bf3;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0}
+.client-name{font-size:12px;color:#1a1d23;font-weight:500}
+.client-plan{font-size:10px;color:#9ba3af;margin-top:1px}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:56px;background:#fff;border-bottom:1px solid #eaecf0;display:flex;align-items:center;padding:0 24px;gap:12px;flex-shrink:0}
+.topbar-title{font-size:15px;font-weight:600;color:#1a1d23}
+.topbar-badge{font-size:11px;padding:3px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;font-weight:500}
+.topbar-badge.green{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}
+.topbar-badge.orange{background:#fff7ed;color:#d97706;border:1px solid #fde68a}
+.topbar-actions{margin-left:auto;display:flex;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;transition:all 0.12s;border:1px solid #eaecf0;background:#fff;color:#374151}
+.btn:hover{background:#f9fafb;border-color:#d1d5db}
+.btn.primary{background:#1d6bf3;border-color:#1d6bf3;color:#fff}
+.btn.primary:hover{background:#1558d6}
+.btn.success{background:#059669;border-color:#059669;color:#fff}
+.btn.success:hover{background:#047857}
+.content{padding:24px;flex:1;overflow-y:auto;background:#f5f6fa}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.stat{background:#fff;border:1px solid #eaecf0;border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.stat-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.stat-icon.blue{background:#eff4ff}.stat-icon.blue i{color:#1d6bf3;font-size:18px}
+.stat-icon.green{background:#ecfdf5}.stat-icon.green i{color:#059669;font-size:18px}
+.stat-icon.purple{background:#f5f3ff}.stat-icon.purple i{color:#7c3aed;font-size:18px}
+.stat-icon.orange{background:#fff7ed}.stat-icon.orange i{color:#d97706;font-size:18px}
+.stat-label{font-size:11px;color:#9ba3af;margin-bottom:8px;font-weight:500;text-transform:uppercase;letter-spacing:0.04em}
+.stat-val{font-size:28px;font-weight:600;color:#1a1d23;line-height:1}
+.stat-delta{font-size:11px;margin-top:5px;font-weight:500}
+.stat-delta.up{color:#059669}.stat-delta.neutral{color:#9ba3af}
+.section{background:#fff;border:1px solid #eaecf0;border-radius:12px;margin-bottom:16px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.section-header{padding:14px 18px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:10px}
+.section-header i{font-size:16px;color:#1d6bf3}
+.section-title{font-size:13px;font-weight:600;color:#1a1d23}
+.section-count{font-size:12px;color:#9ba3af}
+.section-actions{margin-left:auto;display:flex;gap:8px}
+.live-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:#059669;padding:2px 8px;border-radius:20px;background:#ecfdf5;border:1px solid #a7f3d0;font-weight:500;margin-left:8px}
+.live-dot{width:5px;height:5px;border-radius:50%;background:#059669;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;color:#9ba3af;padding:10px 18px;text-align:left;border-bottom:1px solid #f3f4f6;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;background:#fafafa}
+td{font-size:13px;padding:11px 18px;border-bottom:1px solid #f9fafb;color:#374151;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#f9fafb}
+.empty-cell{text-align:center;padding:40px 18px;color:#9ba3af}
+.empty-cell i{font-size:32px;display:block;margin:0 auto 10px;color:#e5e7eb}
+.empty-cell p{font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;white-space:nowrap}
+.pill .dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.pill.active{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}
+.pill.warn{background:#fff7ed;color:#d97706;border:1px solid #fde68a}
+.pill.inactive{background:#f9fafb;color:#9ba3af;border:1px solid #e5e7eb}
+.pill.blue{background:#eff4ff;color:#1d6bf3;border:1px solid #c7d7fd}
+.pill.human{background:#fdf2f8;color:#9333ea;border:1px solid #e9d5ff}
+.icon-btn{width:28px;height:28px;border-radius:6px;border:1px solid #e5e7eb;background:#fff;cursor:pointer;color:#9ba3af;display:inline-flex;align-items:center;justify-content:center;font-size:13px;transition:all 0.12s}
+.icon-btn:hover{background:#f9fafb;color:#374151;border-color:#d1d5db}
+.icon-btn.danger:hover{background:#fef2f2;color:#ef4444;border-color:#fca5a5}
+.tabs{display:flex;border-bottom:1px solid #f3f4f6;padding:0 18px;background:#fafafa;overflow-x:auto}
+.tab{padding:10px 14px;font-size:12px;color:#9ba3af;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.12s;white-space:nowrap;font-weight:500}
+.tab.active{color:#1d6bf3;border-bottom-color:#1d6bf3}
+.tab:hover:not(.active){color:#374151}
+.kb-grid{display:grid;grid-template-columns:1fr 1fr}
+.kb-item{padding:14px 18px;border-bottom:1px solid #f9fafb;display:flex;align-items:flex-start;gap:12px;transition:background 0.1s}
+.kb-item:hover{background:#f9fafb}
+.kb-item:nth-child(even){border-left:1px solid #f3f4f6}
+.kb-body{flex:1;min-width:0}
+.kb-cat{font-size:10px;color:#1d6bf3;margin-bottom:4px;letter-spacing:0.06em;font-weight:600;text-transform:uppercase}
+.kb-title{font-size:13px;color:#1a1d23;margin-bottom:3px;font-weight:500}
+.kb-preview{font-size:12px;color:#9ba3af;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kb-actions{display:flex;gap:4px;flex-shrink:0;opacity:0;transition:opacity 0.12s}
+.kb-item:hover .kb-actions{opacity:1}
+.bot-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.bot-cell{padding:16px 20px;border-right:1px solid #f3f4f6;border-bottom:1px solid #f3f4f6}
+.bot-cell:nth-child(3n){border-right:none}
+.bot-cell:nth-last-child(-n+3){border-bottom:none}
+.bot-cell-label{font-size:10px;color:#9ba3af;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600}
+.bot-cell-val{font-size:14px;color:#1a1d23;font-weight:600;margin-bottom:6px}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:18px}
+.setting-item{background:#f9fafb;border:1px solid #eaecf0;border-radius:10px;padding:14px 16px}
+.setting-label{font-size:10px;color:#9ba3af;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600}
+.setting-val{font-size:13px;color:#1a1d23;font-weight:500}
+.setting-val.blue{color:#1d6bf3}.setting-val.warn{color:#d97706}.setting-val.green{color:#059669}
+.modal-overlay{position:fixed;inset:0;background:rgba(17,24,39,0.4);display:none;align-items:center;justify-content:center;z-index:100;backdrop-filter:blur(2px)}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border:1px solid #eaecf0;border-radius:16px;padding:24px;width:500px;max-width:90vw;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+.modal-title{font-size:16px;font-weight:600;color:#1a1d23;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.modal-title i{color:#1d6bf3;font-size:18px}
+.form-group{margin-bottom:14px}
+.form-label{font-size:11px;color:#6b7280;margin-bottom:5px;display:block;letter-spacing:0.04em;text-transform:uppercase;font-weight:600}
+.form-input{width:100%;padding:9px 12px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#1a1d23;font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:border 0.12s}
+.form-input:focus{border-color:#1d6bf3;box-shadow:0 0 0 3px rgba(29,107,243,0.1)}
+.form-select{width:100%;padding:9px 12px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#1a1d23;font-size:13px;font-family:'Inter',sans-serif;outline:none}
+textarea.form-input{min-height:90px;resize:vertical}
+.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1px solid #f3f4f6}
+.notif{position:fixed;bottom:24px;right:24px;background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:12px 18px;font-size:13px;color:#1a1d23;display:flex;align-items:center;gap:10px;transform:translateY(80px);opacity:0;transition:all 0.2s;z-index:200;box-shadow:0 4px 20px rgba(0,0,0,0.1);font-weight:500}
+.notif.show{transform:translateY(0);opacity:1}
+.notif i{color:#059669;font-size:16px}
+.loader{display:inline-block;width:16px;height:16px;border:2px solid #e5e7eb;border-top-color:#1d6bf3;border-radius:50%;animation:spin 0.6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.session-avatar{width:30px;height:30px;border-radius:8px;background:#eff4ff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#1d6bf3;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="logo">
+    <img src="/assets/logo.png" alt="France Agent IA" style="height:32px;width:auto;object-fit:contain">
+    <div>
+      <div class="logo-name">France Agent IA</div>
+      <div class="logo-sub">Back-office client</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <div class="nav-section">
+      <div class="nav-label">Vue générale</div>
+      <button class="nav-item active" onclick="showPage('dashboard',this)"><i class="ti ti-layout-dashboard"></i> Tableau de bord</button>
+      <button class="nav-item" onclick="showPage('kb',this)"><i class="ti ti-database"></i> Base de connaissance <span class="badge badge-blue" id="kb-badge">—</span></button>
+      <button class="nav-item" onclick="showPage('conversations',this)"><i class="ti ti-messages"></i> Conversations <span class="badge badge-green" id="conv-badge">0</span></button>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Gestion</div>
+      <button class="nav-item" onclick="showPage('reservations',this)"><i class="ti ti-calendar-event"></i> Réservations</button>
+      <button class="nav-item" onclick="showPage('devis',this)"><i class="ti ti-file-invoice"></i> Devis & factures</button>
+      <button class="nav-item" onclick="showPage('settings',this)"><i class="ti ti-settings"></i> Paramètres</button>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="client-chip">
+      <div class="client-avatar">PL</div>
+      <div>
+        <div class="client-name">Hôtel Punta Lara</div>
+        <div class="client-plan">FAQ WhatsApp · Actif</div>
+      </div>
+      <i class="ti ti-chevron-down" style="margin-left:auto;font-size:12px;color:#9ba3af"></i>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-title" id="page-title">Tableau de bord</div>
+    <span class="topbar-badge green" id="page-badge"><i class="ti ti-circle-check" style="font-size:11px"></i> Bot actif</span>
+    <div class="topbar-actions">
+      <button class="btn primary" id="topbar-cta" onclick="openModal('add-kb')">
+        <i class="ti ti-plus"></i> Nouvelle entrée KB
+      </button>
+      <div style="display:flex;align-items:center;gap:8px;padding:0 4px">
+        <i class="ti ti-user-circle" style="font-size:16px;color:#9ba3af"></i>
+        <span id="user-email" style="font-size:12px;color:#6b7280"></span>
+      </div>
+      <button class="btn" onclick="logout()" title="Déconnexion"><i class="ti ti-logout"></i></button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div id="page-dashboard">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-icon blue"><i class="ti ti-message-2"></i></div>
+          <div class="stat-label">Messages</div>
+          <div class="stat-val" id="stat-messages">—</div>
+          <div class="stat-delta neutral">Ce mois</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon green"><i class="ti ti-users"></i></div>
+          <div class="stat-label">Sessions</div>
+          <div class="stat-val" id="stat-sessions">—</div>
+          <div class="stat-delta neutral">Numéros uniques</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon blue"><i class="ti ti-database"></i></div>
+          <div class="stat-label">Entrées KB</div>
+          <div class="stat-val" id="stat-kb">—</div>
+          <div class="stat-delta up">Supabase live</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon purple"><i class="ti ti-user-check"></i></div>
+          <div class="stat-label">Prises en main</div>
+          <div class="stat-val" id="stat-handoff">—</div>
+          <div class="stat-delta neutral">Équipe active</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <i class="ti ti-robot"></i>
+          <div class="section-title">État du bot</div>
+          <span class="live-tag"><span class="live-dot"></span>Live</span>
+        </div>
+        <div class="bot-grid">
+          <div class="bot-cell"><div class="bot-cell-label">Assistant</div><div class="bot-cell-val">Hôtel Punta Lara</div><span class="pill active"><span class="dot"></span>En ligne</span></div>
+          <div class="bot-cell"><div class="bot-cell-label">Canal</div><div class="bot-cell-val">WhatsApp</div><span class="pill warn"><span class="dot"></span>Connexion en cours</span></div>
+          <div class="bot-cell"><div class="bot-cell-label">Langues</div><div class="bot-cell-val">FR · EN · DE</div><span class="pill active"><span class="dot"></span>Actif</span></div>
+          <div class="bot-cell"><div class="bot-cell-label">Base de connaissance</div><div class="bot-cell-val" id="dash-kb-count">— entrées</div><span class="pill blue"><span class="dot"></span>À jour</span></div>
+          <div class="bot-cell"><div class="bot-cell-label">Transfert équipe</div><div class="bot-cell-val">Automatique</div><span class="pill active"><span class="dot"></span>Configuré</span></div>
+          <div class="bot-cell"><div class="bot-cell-label">Disponibilité</div><div class="bot-cell-val">24h/24 · 7j/7</div><span class="pill active"><span class="dot"></span>Actif</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <i class="ti ti-messages"></i>
+          <div class="section-title">Conversations récentes</div>
+          <span class="live-tag"><span class="live-dot"></span>Live</span>
+          <div class="section-actions"><button class="btn" onclick="loadDashboard()"><i class="ti ti-refresh"></i> Actualiser</button></div>
+        </div>
+        <table>
+          <thead><tr><th>Client</th><th>Dernier message</th><th>Date</th><th>Statut</th></tr></thead>
+          <tbody id="recent-conversations"><tr><td class="empty-cell" colspan="4"><div class="loader"></div></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- KB -->
+    <div id="page-kb" style="display:none">
+      <div class="section">
+        <div class="section-header">
+          <i class="ti ti-database"></i>
+          <div class="section-title">Base de connaissance</div>
+          <div class="section-count">— <span id="kb-total">—</span> entrées</div>
+          <span class="live-tag"><span class="live-dot"></span>Supabase live</span>
+          <div class="section-actions">
+            <button class="btn" onclick="loadKB(currentFilter)"><i class="ti ti-refresh"></i></button>
+            <button class="btn primary" onclick="openModal('add-kb')"><i class="ti ti-plus"></i> Nouvelle entrée</button>
+          </div>
+        </div>
+        <div class="tabs" id="kb-tabs">
+          <div class="tab active" onclick="filterKB('all',this)">Tout</div>
+          <div class="tab" onclick="filterKB('services',this)">Services</div>
+          <div class="tab" onclick="filterKB('restaurant',this)">Restaurant</div>
+          <div class="tab" onclick="filterKB('rooms',this)">Chambres</div>
+          <div class="tab" onclick="filterKB('events',this)">Événements</div>
+          <div class="tab" onclick="filterKB('policies',this)">Politiques</div>
+          <div class="tab" onclick="filterKB('contact',this)">Contact</div>
+          <div class="tab" onclick="filterKB('pets',this)">Animaux</div>
+        </div>
+        <div class="kb-grid" id="kb-grid">
+          <div style="grid-column:1/-1;padding:40px;text-align:center"><div class="loader"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONVERSATIONS -->
+    <div id="page-conversations" style="display:none">
+      <div class="section">
+        <div class="section-header">
+          <i class="ti ti-messages"></i>
+          <div class="section-title">Conversations</div>
+          <span class="live-tag"><span class="live-dot"></span>Live</span>
+          <div class="section-actions"><button class="btn" onclick="loadConversations()"><i class="ti ti-refresh"></i> Actualiser</button></div>
+        </div>
+        <table>
+          <thead><tr><th>Client</th><th>Messages</th><th>Dernier échange</th><th>Date</th><th>Statut</th><th>Action</th></tr></thead>
+          <tbody id="conv-table"><tr><td class="empty-cell" colspan="6"><div class="loader"></div></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RESERVATIONS -->
+    <div id="page-reservations" style="display:none">
+      <div class="section">
+        <div class="section-header"><i class="ti ti-calendar-event"></i><div class="section-title">Réservations restaurant</div><span style="font-size:11px;color:#9ba3af;margin-left:8px">Roadmap prod</span></div>
+        <table><thead><tr><th>Client</th><th>Date</th><th>Heure</th><th>Couverts</th><th>Statut</th></tr></thead>
+        <tbody><tr><td class="empty-cell" colspan="5"><i class="ti ti-calendar-off"></i><p>Disponible en production</p></td></tr></tbody></table>
+      </div>
+      <div class="section">
+        <div class="section-header"><i class="ti ti-building"></i><div class="section-title">Séminaires & mariages</div><span style="font-size:11px;color:#9ba3af;margin-left:8px">Roadmap prod</span></div>
+        <table><thead><tr><th>Client</th><th>Type</th><th>Arrivée</th><th>Départ</th><th>Pers.</th><th>Salle</th><th>Statut</th></tr></thead>
+        <tbody><tr><td class="empty-cell" colspan="7"><i class="ti ti-building-off"></i><p>Disponible en production</p></td></tr></tbody></table>
+      </div>
+    </div>
+
+    <!-- DEVIS -->
+    <div id="page-devis" style="display:none">
+      <div class="section">
+        <div class="section-header"><i class="ti ti-file-invoice"></i><div class="section-title">Devis & factures</div><span style="font-size:11px;color:#9ba3af;margin-left:8px">Roadmap prod</span></div>
+        <table><thead><tr><th>Référence</th><th>Client</th><th>Email</th><th>Montant</th><th>Date</th><th>Statut</th></tr></thead>
+        <tbody><tr><td class="empty-cell" colspan="6"><i class="ti ti-file-off"></i><p>Disponible en production</p></td></tr></tbody></table>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="page-settings" style="display:none">
+      <div class="section">
+        <div class="section-header"><i class="ti ti-robot"></i><div class="section-title">Configuration du bot</div></div>
+        <div class="settings-grid">
+          <div class="setting-item"><div class="setting-label">Nom de l'assistant</div><div class="setting-val blue">Assistant Hôtel Punta Lara</div></div>
+          <div class="setting-item"><div class="setting-label">Modèle IA</div><div class="setting-val blue">gpt-4o-mini</div></div>
+          <div class="setting-item"><div class="setting-label">Langues actives</div><div class="setting-val blue">Français · English · Deutsch</div></div>
+          <div class="setting-item"><div class="setting-label">Mémoire conversationnelle</div><div class="setting-val blue">6 derniers messages</div></div>
+          <div class="setting-item"><div class="setting-label">Purge mémoire post-facture</div><div class="setting-val green">Activé</div></div>
+          <div class="setting-item"><div class="setting-label">Prise de main manuelle</div><div class="setting-val green">Activé</div></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-header"><i class="ti ti-message"></i><div class="section-title">Messages système</div></div>
+        <div style="padding:18px;display:flex;flex-direction:column;gap:12px">
+          <div>
+            <div class="setting-label" style="margin-bottom:6px">Message d'accueil (FR)</div>
+            <div style="background:#f9fafb;border:1px solid #eaecf0;border-radius:8px;padding:10px 14px;font-size:13px;color:#374151">Bienvenue à l'Hôtel Punta Lara ! 🌊 Je suis votre assistant virtuel. Comment puis-je vous aider ?</div>
+          </div>
+          <div>
+            <div class="setting-label" style="margin-bottom:6px">Message de transfert (FR)</div>
+            <div style="background:#f9fafb;border:1px solid #eaecf0;border-radius:8px;padding:10px 14px;font-size:13px;color:#374151">Bien sûr ! Je vous transfère à notre équipe de réception immédiatement. 🏨</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL KB -->
+<div class="modal-overlay" id="modal-add-kb" onclick="closeModal('add-kb')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-title"><i class="ti ti-database"></i><span id="modal-kb-title">Nouvelle entrée KB</span></div>
+    <input type="hidden" id="edit-kb-id">
+    <div class="form-group">
+      <label class="form-label">Catégorie</label>
+      <select class="form-select" id="new-kb-cat">
+        <option value="services">Services</option>
+        <option value="restaurant">Restaurant</option>
+        <option value="rooms">Chambres</option>
+        <option value="events">Événements</option>
+        <option value="policies">Politiques</option>
+        <option value="contact">Contact</option>
+        <option value="pets">Animaux</option>
+        <option value="breakfast">Petit-déjeuner</option>
+        <option value="bar">Bar</option>
+        <option value="hotel">Hôtel</option>
+        <option value="identity">Identité</option>
+        <option value="location">Localisation</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Titre</label>
+      <input type="text" class="form-input" id="new-kb-title" placeholder="Ex: Horaires piscine">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Contenu</label>
+      <textarea class="form-input" id="new-kb-content" placeholder="Information complète..."></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="btn" onclick="closeModal('add-kb')">Annuler</button>
+      <button class="btn primary" onclick="saveKBEntry()"><i class="ti ti-check"></i> Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<div class="notif" id="notif"><i class="ti ti-check"></i> <span id="notif-text"></span></div>
+
+<script>
+const SUPA_URL='https://stokclikeifskbheumfj.supabase.co';
+const SUPA_KEY='sb_publishable_QbxqFhD_MPAofn3kTl8Yxg_EVzf-dkN';
+const _supa=window.supabase.createClient(SUPA_URL,SUPA_KEY);
+
+var _token=null;
+function getH(){return{'apikey':SUPA_KEY,'Authorization':'Bearer '+(_token||SUPA_KEY),'Content-Type':'application/json','Prefer':'return=representation'};}
+var H=getH();
+
+async function initAuth(){
+  var res=await _supa.auth.getSession();
+  if(!res.data||!res.data.session){window.location.href='/login.html';return false;}
+  _token=res.data.session.access_token;
+  H=getH();
+  // Afficher email utilisateur
+  var email=res.data.session.user.email||'';
+  var name=email.split('@')[0];
+  document.getElementById('user-email').textContent=email;
+  return true;
+}
+
+async function supa(endpoint,opts){
+  var r=await fetch(SUPA_URL+'/rest/v1/'+endpoint,Object.assign({headers:H},opts||{}));
+  if(r.status===401){window.location.href='/login.html';return null;}
+  if(!r.ok)throw new Error(await r.text());
+  return r.json().catch(function(){return null;});
+}
+
+var currentFilter='all';
+var editingId=null;
+
+async function loadDashboard(){
+  try{
+    const kbR=await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?select=id',{headers:Object.assign({},H,{'Prefer':'count=exact'})});
+    const kbCount=kbR.headers.get('content-range')?kbR.headers.get('content-range').split('/')[1]:'—';
+    const handoff=await supa('punta_lara_handoff?status=eq.human&select=session_key');
+    const hCount=Array.isArray(handoff)?handoff.length:0;
+    document.getElementById('stat-kb').textContent=kbCount;
+    document.getElementById('stat-handoff').textContent=hCount;
+    document.getElementById('dash-kb-count').textContent=kbCount+' entrées';
+    document.getElementById('kb-badge').textContent=kbCount;
+  }catch(e){console.error('KB count error',e);}
+
+  try{
+    const msgs=await supa('punta_lara_faq_memory?select=session_key,message,role,created_at&order=created_at.desc&limit=300');
+    var sm={};
+    (msgs||[]).forEach(function(m){
+      if(!sm[m.session_key])sm[m.session_key]={sk:m.session_key,last:m.message,date:m.created_at,n:0};
+      sm[m.session_key].n++;
+    });
+    var ss=Object.values(sm);
+    document.getElementById('stat-sessions').textContent=ss.length;
+    document.getElementById('stat-messages').textContent=(msgs||[]).length;
+    document.getElementById('conv-badge').textContent=ss.length;
+    var tbody=document.getElementById('recent-conversations');
+    if(!ss.length){
+      tbody.innerHTML='<tr><td class="empty-cell" colspan="4"><i class="ti ti-inbox"></i><p>Aucune conversation pour l\'instant</p></td></tr>';
+      return;
+    }
+    tbody.innerHTML=ss.slice(0,8).map(function(s){
+      return '<tr><td><div style="display:flex;align-items:center;gap:10px"><div class="session-avatar">'+esc(s.sk.substring(0,2).toUpperCase())+'</div><span style="font-family:monospace;font-size:11px;color:#9ba3af">'+esc(s.sk.substring(0,18))+'...</span></div></td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(s.last.substring(0,80))+'</td><td style="color:#9ba3af;white-space:nowrap">'+fmtDate(s.date)+'</td><td><span class="pill active"><span class="dot"></span>Bot actif</span></td></tr>';
+    }).join('');
+  }catch(e){
+    document.getElementById('recent-conversations').innerHTML='<tr><td class="empty-cell" colspan="4"><i class="ti ti-wifi-off"></i><p>Erreur connexion Supabase</p></td></tr>';
+  }
+}
+
+async function loadKB(filter){
+  var grid=document.getElementById('kb-grid');
+  grid.innerHTML='<div style="grid-column:1/-1;padding:40px;text-align:center"><div class="loader"></div></div>';
+  try{
+    var url='punta_lara_knowledge?select=id,category,title,content,status&order=category,title';
+    if(filter&&filter!=='all')url+='&category=eq.'+filter;
+    var data=await supa(url)||[];
+    document.getElementById('kb-total').textContent=data.length;
+    if(!data.length){
+      grid.innerHTML='<div style="grid-column:1/-1;padding:40px;text-align:center;color:#9ba3af"><i class="ti ti-database-off" style="font-size:28px;display:block;margin:0 auto 10px;color:#e5e7eb"></i>Aucune entrée dans cette catégorie</div>';
+      return;
+    }
+    grid.innerHTML=data.map(function(e){
+      var eJson=JSON.stringify(e).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      return '<div class="kb-item"><div class="kb-body"><div class="kb-cat">'+esc(e.category)+'</div><div class="kb-title">'+esc(e.title)+'</div><div class="kb-preview">'+esc(e.content)+'</div></div><div class="kb-actions"><button class="icon-btn" onclick="editKB(\''+eJson+'\')" title="Modifier"><i class="ti ti-edit"></i></button><button class="icon-btn danger" onclick="deleteKB(\''+e.id+'\')" title="Supprimer"><i class="ti ti-trash"></i></button></div></div>';
+    }).join('');
+  }catch(e){
+    grid.innerHTML='<div style="grid-column:1/-1;padding:20px 18px;color:#ef4444;font-size:13px">Erreur Supabase : '+esc(e.message)+'</div>';
+  }
+}
+
+function filterKB(f,el){
+  currentFilter=f;
+  document.querySelectorAll('#kb-tabs .tab').forEach(function(t){t.classList.remove('active');});
+  if(el)el.classList.add('active');
+  loadKB(f);
+}
+
+function editKB(eJson){
+  var e=JSON.parse(eJson);
+  editingId=e.id;
+  document.getElementById('modal-kb-title').textContent='Modifier l\'entrée';
+  document.getElementById('edit-kb-id').value=e.id;
+  document.getElementById('new-kb-cat').value=e.category;
+  document.getElementById('new-kb-title').value=e.title;
+  document.getElementById('new-kb-content').value=e.content;
+  openModal('add-kb');
+}
+
+async function deleteKB(id){
+  if(!confirm('Supprimer cette entrée ?'))return;
+  try{
+    await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?id=eq.'+id,{method:'DELETE',headers:H});
+    notify('Entrée supprimée');
+    loadKB(currentFilter);
+  }catch(e){alert('Erreur: '+e.message);}
+}
+
+async function saveKBEntry(){
+  var cat=document.getElementById('new-kb-cat').value;
+  var title=document.getElementById('new-kb-title').value.trim();
+  var content=document.getElementById('new-kb-content').value.trim();
+  if(!title||!content){alert('Titre et contenu requis');return;}
+  var body=JSON.stringify({category:cat,title:title,content:content,status:'verified_public',confidence:1.0,source:'back-office'});
+  try{
+    if(editingId){
+      await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?id=eq.'+editingId,{method:'PATCH',headers:H,body:body});
+      notify('Entrée mise à jour ✓');
+    }else{
+      await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge',{method:'POST',headers:H,body:body});
+      notify('Entrée ajoutée ✓');
+    }
+    closeModal('add-kb');
+    editingId=null;
+    loadKB(currentFilter);
+    var kbR=await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?select=id',{headers:Object.assign({},H,{'Prefer':'count=exact'})});
+    var c=kbR.headers.get('content-range')?kbR.headers.get('content-range').split('/')[1]:'—';
+    document.getElementById('stat-kb').textContent=c;
+    document.getElementById('kb-badge').textContent=c;
+    document.getElementById('dash-kb-count').textContent=c+' entrées';
+  }catch(e){alert('Erreur Supabase: '+e.message);}
+}
+
+async function loadConversations(){
+  var tbody=document.getElementById('conv-table');
+  tbody.innerHTML='<tr><td class="empty-cell" colspan="6"><div class="loader"></div></td></tr>';
+  try{
+    var msgs=await supa('punta_lara_faq_memory?select=session_key,message,role,created_at&order=created_at.desc&limit=300');
+    var handoffs=await supa('punta_lara_handoff?select=session_key,status');
+    var hm={};
+    (handoffs||[]).forEach(function(h){hm[h.session_key]=h.status;});
+    var sm={};
+    (msgs||[]).forEach(function(m){
+      if(!sm[m.session_key])sm[m.session_key]={sk:m.session_key,last:m.message,date:m.created_at,n:0,lastUser:''};
+      sm[m.session_key].n++;
+      if(m.role==='user'&&!sm[m.session_key].lastUser)sm[m.session_key].lastUser=m.message;
+    });
+    var ss=Object.values(sm);
+    if(!ss.length){
+      tbody.innerHTML='<tr><td class="empty-cell" colspan="6"><i class="ti ti-inbox"></i><p>Aucune conversation</p></td></tr>';
+      return;
+    }
+    tbody.innerHTML=ss.map(function(s){
+      var isH=hm[s.sk]==='human';
+      var actionBtn=isH
+        ?'<button class="btn success" onclick="setHandoff(\''+s.sk+'\',\'bot\')" style="font-size:11px;padding:4px 10px"><i class="ti ti-robot"></i> Rendre au bot</button>'
+        :'<button class="btn" onclick="setHandoff(\''+s.sk+'\',\'human\')" style="font-size:11px;padding:4px 10px"><i class="ti ti-user"></i> Prendre la main</button>';
+      return '<tr><td><div style="display:flex;align-items:center;gap:10px"><div class="session-avatar">'+esc(s.sk.substring(0,2).toUpperCase())+'</div><span style="font-family:monospace;font-size:11px;color:#9ba3af">'+esc(s.sk.substring(0,16))+'...</span></div></td><td style="color:#6b7280">'+s.n+'</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc((s.lastUser||s.last).substring(0,60))+'</td><td style="color:#9ba3af;white-space:nowrap">'+fmtDate(s.date)+'</td><td>'+(isH?'<span class="pill human"><span class="dot"></span>Équipe</span>':'<span class="pill active"><span class="dot"></span>Bot</span>')+'</td><td>'+actionBtn+'</td></tr>';
+    }).join('');
+  }catch(e){
+    tbody.innerHTML='<tr><td class="empty-cell" colspan="6"><i class="ti ti-wifi-off"></i><p>Erreur Supabase</p></td></tr>';
+  }
+}
+
+async function setHandoff(sk,status){
+  try{
+    var ex=await supa('punta_lara_handoff?session_key=eq.'+encodeURIComponent(sk));
+    var body=JSON.stringify({session_key:sk,status:status,taken_at:status==='human'?new Date().toISOString():null,released_at:status==='bot'?new Date().toISOString():null,updated_at:new Date().toISOString()});
+    if(ex&&ex.length){
+      await fetch(SUPA_URL+'/rest/v1/punta_lara_handoff?session_key=eq.'+encodeURIComponent(sk),{method:'PATCH',headers:H,body:body});
+    }else{
+      await fetch(SUPA_URL+'/rest/v1/punta_lara_handoff',{method:'POST',headers:H,body:body});
+    }
+    notify(status==='human'?'Main prise — bot suspendu ✓':'Rendu au bot ✓');
+    loadConversations();
+  }catch(e){alert('Erreur: '+e.message);}
+}
+
+var pages={
+  dashboard:{title:'Tableau de bord',badge:'green',bt:'<i class="ti ti-circle-check" style="font-size:11px"></i> Bot actif'},
+  kb:{title:'Base de connaissance',badge:'green',bt:'Supabase live'},
+  conversations:{title:'Conversations',badge:'green',bt:'Live'},
+  reservations:{title:'Réservations',badge:'orange',bt:'Roadmap prod'},
+  devis:{title:'Devis & factures',badge:'orange',bt:'Roadmap prod'},
+  settings:{title:'Paramètres',badge:'',bt:''}
+};
+
+function showPage(name,btn){
+  document.querySelectorAll('[id^="page-"]').forEach(function(el){el.style.display='none';});
+  document.getElementById('page-'+name).style.display='';
+  document.querySelectorAll('.nav-item').forEach(function(el){el.classList.remove('active');});
+  if(btn)btn.classList.add('active');
+  var p=pages[name];
+  document.getElementById('page-title').textContent=p.title;
+  var badge=document.getElementById('page-badge');
+  if(p.bt){badge.innerHTML=p.bt;badge.className='topbar-badge '+p.badge;badge.style.display='';}
+  else badge.style.display='none';
+  var cta=document.getElementById('topbar-cta');
+  if(name==='kb'){cta.innerHTML='<i class="ti ti-plus"></i> Nouvelle entrée';cta.onclick=function(){openModal('add-kb');};cta.style.display='';}
+  else if(name==='conversations'){cta.innerHTML='<i class="ti ti-refresh"></i> Actualiser';cta.onclick=loadConversations;cta.style.display='';}
+  else if(name==='dashboard'){cta.innerHTML='<i class="ti ti-refresh"></i> Actualiser';cta.onclick=loadDashboard;cta.style.display='';}
+  else cta.style.display='none';
+  if(name==='kb')loadKB(currentFilter);
+  if(name==='conversations')loadConversations();
+  if(name==='dashboard')loadDashboard();
+}
+
+function openModal(n){
+  if(n==='add-kb'){
+    editingId=null;
+    document.getElementById('modal-kb-title').textContent='Nouvelle entrée KB';
+    document.getElementById('new-kb-title').value='';
+    document.getElementById('new-kb-content').value='';
+  }
+  document.getElementById('modal-'+n).classList.add('open');
+}
+function closeModal(n){document.getElementById('modal-'+n).classList.remove('open');}
+function notify(msg){
+  var n=document.getElementById('notif');
+  document.getElementById('notif-text').textContent=msg;
+  n.classList.add('show');
+  setTimeout(function(){n.classList.remove('show');},2500);
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fmtDate(d){
+  if(!d)return'—';
+  var dt=new Date(d);
+  return dt.toLocaleDateString('fr-FR',{day:'2-digit',month:'short'})+' '+dt.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+}
+
+async function logout(){await _supa.auth.signOut();window.location.href='/login.html';}
+initAuth().then(function(ok){if(ok)loadDashboard();});
+</script>
+</body>
+</html>
