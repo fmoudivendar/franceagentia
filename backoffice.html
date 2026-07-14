@@ -6,7 +6,6 @@
 <title>France Agent IA — Back-office</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:#f5f6fa;color:#1a1d23;height:100vh;display:flex;overflow:hidden}
@@ -25,9 +24,8 @@ body{font-family:'Inter',sans-serif;background:#f5f6fa;color:#1a1d23;height:100v
 .badge{font-size:10px;padding:1px 7px;border-radius:20px;font-weight:500;margin-left:auto}
 .badge-blue{background:#eff4ff;color:#1d6bf3}
 .badge-green{background:#ecfdf5;color:#059669}
-.badge-orange{background:#fff7ed;color:#d97706}
 .sidebar-footer{padding:12px 8px;border-top:1px solid #eaecf0}
-.client-chip{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:#f9fafb;cursor:pointer;border:1px solid #eaecf0}
+.client-chip{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:#f9fafb;border:1px solid #eaecf0}
 .client-avatar{width:32px;height:32px;border-radius:8px;background:#1d6bf3;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0}
 .client-name{font-size:12px;color:#1a1d23;font-weight:500}
 .client-plan{font-size:10px;color:#9ba3af;margin-top:1px}
@@ -182,41 +180,15 @@ textarea.form-input{min-height:90px;resize:vertical}
 
   <div class="content">
 
-    <!-- DASHBOARD -->
     <div id="page-dashboard">
       <div class="stats">
-        <div class="stat">
-          <div class="stat-icon blue"><i class="ti ti-message-2"></i></div>
-          <div class="stat-label">Messages</div>
-          <div class="stat-val" id="stat-messages">—</div>
-          <div class="stat-delta neutral">Ce mois</div>
-        </div>
-        <div class="stat">
-          <div class="stat-icon green"><i class="ti ti-users"></i></div>
-          <div class="stat-label">Sessions</div>
-          <div class="stat-val" id="stat-sessions">—</div>
-          <div class="stat-delta neutral">Numéros uniques</div>
-        </div>
-        <div class="stat">
-          <div class="stat-icon blue"><i class="ti ti-database"></i></div>
-          <div class="stat-label">Entrées KB</div>
-          <div class="stat-val" id="stat-kb">—</div>
-          <div class="stat-delta up">Supabase live</div>
-        </div>
-        <div class="stat">
-          <div class="stat-icon purple"><i class="ti ti-user-check"></i></div>
-          <div class="stat-label">Prises en main</div>
-          <div class="stat-val" id="stat-handoff">—</div>
-          <div class="stat-delta neutral">Équipe active</div>
-        </div>
+        <div class="stat"><div class="stat-icon blue"><i class="ti ti-message-2"></i></div><div class="stat-label">Messages</div><div class="stat-val" id="stat-messages">—</div><div class="stat-delta neutral">Ce mois</div></div>
+        <div class="stat"><div class="stat-icon green"><i class="ti ti-users"></i></div><div class="stat-label">Sessions</div><div class="stat-val" id="stat-sessions">—</div><div class="stat-delta neutral">Numéros uniques</div></div>
+        <div class="stat"><div class="stat-icon blue"><i class="ti ti-database"></i></div><div class="stat-label">Entrées KB</div><div class="stat-val" id="stat-kb">—</div><div class="stat-delta up">Supabase live</div></div>
+        <div class="stat"><div class="stat-icon purple"><i class="ti ti-user-check"></i></div><div class="stat-label">Prises en main</div><div class="stat-val" id="stat-handoff">—</div><div class="stat-delta neutral">Équipe active</div></div>
       </div>
-
       <div class="section">
-        <div class="section-header">
-          <i class="ti ti-robot"></i>
-          <div class="section-title">État du bot</div>
-          <span class="live-tag"><span class="live-dot"></span>Live</span>
-        </div>
+        <div class="section-header"><i class="ti ti-robot"></i><div class="section-title">État du bot</div><span class="live-tag"><span class="live-dot"></span>Live</span></div>
         <div class="bot-grid">
           <div class="bot-cell"><div class="bot-cell-label">Assistant</div><div class="bot-cell-val">Hôtel Punta Lara</div><span class="pill active"><span class="dot"></span>En ligne</span></div>
           <div class="bot-cell"><div class="bot-cell-label">Canal</div><div class="bot-cell-val">WhatsApp</div><span class="pill warn"><span class="dot"></span>Connexion en cours</span></div>
@@ -226,34 +198,15 @@ textarea.form-input{min-height:90px;resize:vertical}
           <div class="bot-cell"><div class="bot-cell-label">Disponibilité</div><div class="bot-cell-val">24h/24 · 7j/7</div><span class="pill active"><span class="dot"></span>Actif</span></div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-header">
-          <i class="ti ti-messages"></i>
-          <div class="section-title">Conversations récentes</div>
-          <span class="live-tag"><span class="live-dot"></span>Live</span>
-          <div class="section-actions"><button class="btn" onclick="loadDashboard()"><i class="ti ti-refresh"></i> Actualiser</button></div>
-        </div>
-        <table>
-          <thead><tr><th>Client</th><th>Dernier message</th><th>Date</th><th>Statut</th></tr></thead>
-          <tbody id="recent-conversations"><tr><td class="empty-cell" colspan="4"><div class="loader"></div></td></tr></tbody>
-        </table>
+        <div class="section-header"><i class="ti ti-messages"></i><div class="section-title">Conversations récentes</div><span class="live-tag"><span class="live-dot"></span>Live</span><div class="section-actions"><button class="btn" onclick="loadDashboard()"><i class="ti ti-refresh"></i> Actualiser</button></div></div>
+        <table><thead><tr><th>Client</th><th>Dernier message</th><th>Date</th><th>Statut</th></tr></thead><tbody id="recent-conversations"><tr><td class="empty-cell" colspan="4"><div class="loader"></div></td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- KB -->
     <div id="page-kb" style="display:none">
       <div class="section">
-        <div class="section-header">
-          <i class="ti ti-database"></i>
-          <div class="section-title">Base de connaissance</div>
-          <div class="section-count">— <span id="kb-total">—</span> entrées</div>
-          <span class="live-tag"><span class="live-dot"></span>Supabase live</span>
-          <div class="section-actions">
-            <button class="btn" onclick="loadKB(currentFilter)"><i class="ti ti-refresh"></i></button>
-            <button class="btn primary" onclick="openModal('add-kb')"><i class="ti ti-plus"></i> Nouvelle entrée</button>
-          </div>
-        </div>
+        <div class="section-header"><i class="ti ti-database"></i><div class="section-title">Base de connaissance</div><div class="section-count">— <span id="kb-total">—</span> entrées</div><span class="live-tag"><span class="live-dot"></span>Supabase live</span><div class="section-actions"><button class="btn" onclick="loadKB(currentFilter)"><i class="ti ti-refresh"></i></button><button class="btn primary" onclick="openModal('add-kb')"><i class="ti ti-plus"></i> Nouvelle entrée</button></div></div>
         <div class="tabs" id="kb-tabs">
           <div class="tab active" onclick="filterKB('all',this)">Tout</div>
           <div class="tab" onclick="filterKB('services',this)">Services</div>
@@ -264,55 +217,27 @@ textarea.form-input{min-height:90px;resize:vertical}
           <div class="tab" onclick="filterKB('contact',this)">Contact</div>
           <div class="tab" onclick="filterKB('pets',this)">Animaux</div>
         </div>
-        <div class="kb-grid" id="kb-grid">
-          <div style="grid-column:1/-1;padding:40px;text-align:center"><div class="loader"></div></div>
-        </div>
+        <div class="kb-grid" id="kb-grid"><div style="grid-column:1/-1;padding:40px;text-align:center"><div class="loader"></div></div></div>
       </div>
     </div>
 
-    <!-- CONVERSATIONS -->
     <div id="page-conversations" style="display:none">
       <div class="section">
-        <div class="section-header">
-          <i class="ti ti-messages"></i>
-          <div class="section-title">Conversations</div>
-          <span class="live-tag"><span class="live-dot"></span>Live</span>
-          <div class="section-actions"><button class="btn" onclick="loadConversations()"><i class="ti ti-refresh"></i> Actualiser</button></div>
-        </div>
-        <table>
-          <thead><tr><th>Client</th><th>Messages</th><th>Dernier échange</th><th>Date</th><th>Statut</th><th>Action</th></tr></thead>
-          <tbody id="conv-table"><tr><td class="empty-cell" colspan="6"><div class="loader"></div></td></tr></tbody>
-        </table>
+        <div class="section-header"><i class="ti ti-messages"></i><div class="section-title">Conversations</div><span class="live-tag"><span class="live-dot"></span>Live</span><div class="section-actions"><button class="btn" onclick="loadConversations()"><i class="ti ti-refresh"></i> Actualiser</button></div></div>
+        <table><thead><tr><th>Client</th><th>Messages</th><th>Dernier échange</th><th>Date</th><th>Statut</th><th>Action</th></tr></thead><tbody id="conv-table"><tr><td class="empty-cell" colspan="6"><div class="loader"></div></td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- RESERVATIONS -->
     <div id="page-reservations" style="display:none">
-      <div class="section">
-        <div class="section-header"><i class="ti ti-calendar-event"></i><div class="section-title">Réservations restaurant</div><span style="font-size:11px;color:#9ba3af;margin-left:8px">Roadmap prod</span></div>
-        <table><thead><tr><th>Client</th><th>Date</th><th>Heure</th><th>Couverts</th><th>Statut</th></tr></thead>
-        <tbody><tr><td class="empty-cell" colspan="5"><i class="ti ti-calendar-off"></i><p>Disponible en production</p></td></tr></tbody></table>
-      </div>
-      <div class="section">
-        <div class="section-header"><i class="ti ti-building"></i><div class="section-title">Séminaires & mariages</div><span style="font-size:11px;color:#9ba3af;margin-left:8px">Roadmap prod</span></div>
-        <table><thead><tr><th>Client</th><th>Type</th><th>Arrivée</th><th>Départ</th><th>Pers.</th><th>Salle</th><th>Statut</th></tr></thead>
-        <tbody><tr><td class="empty-cell" colspan="7"><i class="ti ti-building-off"></i><p>Disponible en production</p></td></tr></tbody></table>
-      </div>
+      <div class="section"><div class="section-header"><i class="ti ti-calendar-event"></i><div class="section-title">Réservations</div><span style="font-size:11px;color:#9ba3af;margin-left:8px">Roadmap prod</span></div><table><thead><tr><th>Client</th><th>Date</th><th>Heure</th><th>Couverts</th><th>Statut</th></tr></thead><tbody><tr><td class="empty-cell" colspan="5"><i class="ti ti-calendar-off"></i><p>Disponible en production</p></td></tr></tbody></table></div>
     </div>
 
-    <!-- DEVIS -->
     <div id="page-devis" style="display:none">
-      <div class="section">
-        <div class="section-header"><i class="ti ti-file-invoice"></i><div class="section-title">Devis & factures</div><span style="font-size:11px;color:#9ba3af;margin-left:8px">Roadmap prod</span></div>
-        <table><thead><tr><th>Référence</th><th>Client</th><th>Email</th><th>Montant</th><th>Date</th><th>Statut</th></tr></thead>
-        <tbody><tr><td class="empty-cell" colspan="6"><i class="ti ti-file-off"></i><p>Disponible en production</p></td></tr></tbody></table>
-      </div>
+      <div class="section"><div class="section-header"><i class="ti ti-file-invoice"></i><div class="section-title">Devis & factures</div><span style="font-size:11px;color:#9ba3af;margin-left:8px">Roadmap prod</span></div><table><thead><tr><th>Référence</th><th>Client</th><th>Email</th><th>Montant</th><th>Date</th><th>Statut</th></tr></thead><tbody><tr><td class="empty-cell" colspan="6"><i class="ti ti-file-off"></i><p>Disponible en production</p></td></tr></tbody></table></div>
     </div>
 
-    <!-- SETTINGS -->
     <div id="page-settings" style="display:none">
-      <div class="section">
-        <div class="section-header"><i class="ti ti-robot"></i><div class="section-title">Configuration du bot</div></div>
+      <div class="section"><div class="section-header"><i class="ti ti-robot"></i><div class="section-title">Configuration du bot</div></div>
         <div class="settings-grid">
           <div class="setting-item"><div class="setting-label">Nom de l'assistant</div><div class="setting-val blue">Assistant Hôtel Punta Lara</div></div>
           <div class="setting-item"><div class="setting-label">Modèle IA</div><div class="setting-val blue">gpt-4o-mini</div></div>
@@ -322,87 +247,47 @@ textarea.form-input{min-height:90px;resize:vertical}
           <div class="setting-item"><div class="setting-label">Prise de main manuelle</div><div class="setting-val green">Activé</div></div>
         </div>
       </div>
-      <div class="section">
-        <div class="section-header"><i class="ti ti-message"></i><div class="section-title">Messages système</div></div>
-        <div style="padding:18px;display:flex;flex-direction:column;gap:12px">
-          <div>
-            <div class="setting-label" style="margin-bottom:6px">Message d'accueil (FR)</div>
-            <div style="background:#f9fafb;border:1px solid #eaecf0;border-radius:8px;padding:10px 14px;font-size:13px;color:#374151">Bienvenue à l'Hôtel Punta Lara ! 🌊 Je suis votre assistant virtuel. Comment puis-je vous aider ?</div>
-          </div>
-          <div>
-            <div class="setting-label" style="margin-bottom:6px">Message de transfert (FR)</div>
-            <div style="background:#f9fafb;border:1px solid #eaecf0;border-radius:8px;padding:10px 14px;font-size:13px;color:#374151">Bien sûr ! Je vous transfère à notre équipe de réception immédiatement. 🏨</div>
-          </div>
-        </div>
-      </div>
     </div>
 
   </div>
 </div>
 
-<!-- MODAL KB -->
 <div class="modal-overlay" id="modal-add-kb" onclick="closeModal('add-kb')">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-title"><i class="ti ti-database"></i><span id="modal-kb-title">Nouvelle entrée KB</span></div>
     <input type="hidden" id="edit-kb-id">
-    <div class="form-group">
-      <label class="form-label">Catégorie</label>
+    <div class="form-group"><label class="form-label">Catégorie</label>
       <select class="form-select" id="new-kb-cat">
-        <option value="services">Services</option>
-        <option value="restaurant">Restaurant</option>
-        <option value="rooms">Chambres</option>
-        <option value="events">Événements</option>
-        <option value="policies">Politiques</option>
-        <option value="contact">Contact</option>
-        <option value="pets">Animaux</option>
-        <option value="breakfast">Petit-déjeuner</option>
-        <option value="bar">Bar</option>
-        <option value="hotel">Hôtel</option>
-        <option value="identity">Identité</option>
-        <option value="location">Localisation</option>
+        <option value="services">Services</option><option value="restaurant">Restaurant</option><option value="rooms">Chambres</option><option value="events">Événements</option><option value="policies">Politiques</option><option value="contact">Contact</option><option value="pets">Animaux</option><option value="breakfast">Petit-déjeuner</option><option value="bar">Bar</option><option value="hotel">Hôtel</option><option value="identity">Identité</option><option value="location">Localisation</option>
       </select>
     </div>
-    <div class="form-group">
-      <label class="form-label">Titre</label>
-      <input type="text" class="form-input" id="new-kb-title" placeholder="Ex: Horaires piscine">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Contenu</label>
-      <textarea class="form-input" id="new-kb-content" placeholder="Information complète..."></textarea>
-    </div>
-    <div class="form-actions">
-      <button class="btn" onclick="closeModal('add-kb')">Annuler</button>
-      <button class="btn primary" onclick="saveKBEntry()"><i class="ti ti-check"></i> Enregistrer</button>
-    </div>
+    <div class="form-group"><label class="form-label">Titre</label><input type="text" class="form-input" id="new-kb-title" placeholder="Ex: Horaires piscine"></div>
+    <div class="form-group"><label class="form-label">Contenu</label><textarea class="form-input" id="new-kb-content" placeholder="Information complète..."></textarea></div>
+    <div class="form-actions"><button class="btn" onclick="closeModal('add-kb')">Annuler</button><button class="btn primary" onclick="saveKBEntry()"><i class="ti ti-check"></i> Enregistrer</button></div>
   </div>
 </div>
 
 <div class="notif" id="notif"><i class="ti ti-check"></i> <span id="notif-text"></span></div>
 
 <script>
-const SUPA_URL='https://stokclikeifskbheumfj.supabase.co';
-const SUPA_KEY='sb_publishable_QbxqFhD_MPAofn3kTl8Yxg_EVzf-dkN';
-const _supa=window.supabase.createClient(SUPA_URL,SUPA_KEY);
-
+var SUPA_URL='https://stokclikeifskbheumfj.supabase.co';
+var ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0b2tjbGlrZWlmc2tiaGV1bWZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM5Njc2MzcsImV4cCI6MjA5OTU0MzYzN30.k0UbuLxR1fqgsj3-5J935E12sVSyqD_Ta6QKrbLRnR4';
 var _token=null;
-function getH(){return{'apikey':SUPA_KEY,'Authorization':'Bearer '+(_token||SUPA_KEY),'Content-Type':'application/json','Prefer':'return=representation'};}
-var H=getH();
+var H={};
 
-async function initAuth(){
-  var res=await _supa.auth.getSession();
-  if(!res.data||!res.data.session){window.location.href='/login.html';return false;}
-  _token=res.data.session.access_token;
-  H=getH();
-  // Afficher email utilisateur
-  var email=res.data.session.user.email||'';
-  var name=email.split('@')[0];
+function initAuth(){
+  var token=sessionStorage.getItem('sb_access_token');
+  var email=sessionStorage.getItem('sb_user_email')||'';
+  if(!token){window.location.href='/login.html';return false;}
+  _token=token;
+  H={'apikey':ANON_KEY,'Authorization':'Bearer '+_token,'Content-Type':'application/json','Prefer':'return=representation'};
   document.getElementById('user-email').textContent=email;
   return true;
 }
 
 async function supa(endpoint,opts){
   var r=await fetch(SUPA_URL+'/rest/v1/'+endpoint,Object.assign({headers:H},opts||{}));
-  if(r.status===401){window.location.href='/login.html';return null;}
+  if(r.status===401){sessionStorage.clear();window.location.href='/login.html';return null;}
   if(!r.ok)throw new Error(await r.text());
   return r.json().catch(function(){return null;});
 }
@@ -412,38 +297,27 @@ var editingId=null;
 
 async function loadDashboard(){
   try{
-    const kbR=await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?select=id',{headers:Object.assign({},H,{'Prefer':'count=exact'})});
-    const kbCount=kbR.headers.get('content-range')?kbR.headers.get('content-range').split('/')[1]:'—';
-    const handoff=await supa('punta_lara_handoff?status=eq.human&select=session_key');
-    const hCount=Array.isArray(handoff)?handoff.length:0;
+    var kbR=await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?select=id',{headers:Object.assign({},H,{'Prefer':'count=exact'})});
+    var kbCount=kbR.headers.get('content-range')?kbR.headers.get('content-range').split('/')[1]:'—';
+    var handoff=await supa('punta_lara_handoff?status=eq.human&select=session_key');
+    var hCount=Array.isArray(handoff)?handoff.length:0;
     document.getElementById('stat-kb').textContent=kbCount;
     document.getElementById('stat-handoff').textContent=hCount;
     document.getElementById('dash-kb-count').textContent=kbCount+' entrées';
     document.getElementById('kb-badge').textContent=kbCount;
-  }catch(e){console.error('KB count error',e);}
-
+  }catch(e){}
   try{
-    const msgs=await supa('punta_lara_faq_memory?select=session_key,message,role,created_at&order=created_at.desc&limit=300');
+    var msgs=await supa('punta_lara_faq_memory?select=session_key,message,role,created_at&order=created_at.desc&limit=300');
     var sm={};
-    (msgs||[]).forEach(function(m){
-      if(!sm[m.session_key])sm[m.session_key]={sk:m.session_key,last:m.message,date:m.created_at,n:0};
-      sm[m.session_key].n++;
-    });
+    (msgs||[]).forEach(function(m){if(!sm[m.session_key])sm[m.session_key]={sk:m.session_key,last:m.message,date:m.created_at,n:0};sm[m.session_key].n++;});
     var ss=Object.values(sm);
     document.getElementById('stat-sessions').textContent=ss.length;
     document.getElementById('stat-messages').textContent=(msgs||[]).length;
     document.getElementById('conv-badge').textContent=ss.length;
     var tbody=document.getElementById('recent-conversations');
-    if(!ss.length){
-      tbody.innerHTML='<tr><td class="empty-cell" colspan="4"><i class="ti ti-inbox"></i><p>Aucune conversation pour l\'instant</p></td></tr>';
-      return;
-    }
-    tbody.innerHTML=ss.slice(0,8).map(function(s){
-      return '<tr><td><div style="display:flex;align-items:center;gap:10px"><div class="session-avatar">'+esc(s.sk.substring(0,2).toUpperCase())+'</div><span style="font-family:monospace;font-size:11px;color:#9ba3af">'+esc(s.sk.substring(0,18))+'...</span></div></td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(s.last.substring(0,80))+'</td><td style="color:#9ba3af;white-space:nowrap">'+fmtDate(s.date)+'</td><td><span class="pill active"><span class="dot"></span>Bot actif</span></td></tr>';
-    }).join('');
-  }catch(e){
-    document.getElementById('recent-conversations').innerHTML='<tr><td class="empty-cell" colspan="4"><i class="ti ti-wifi-off"></i><p>Erreur connexion Supabase</p></td></tr>';
-  }
+    if(!ss.length){tbody.innerHTML='<tr><td class="empty-cell" colspan="4"><i class="ti ti-inbox"></i><p>Aucune conversation pour l\'instant</p></td></tr>';return;}
+    tbody.innerHTML=ss.slice(0,8).map(function(s){return '<tr><td><div style="display:flex;align-items:center;gap:10px"><div class="session-avatar">'+esc(s.sk.substring(0,2).toUpperCase())+'</div><span style="font-family:monospace;font-size:11px;color:#9ba3af">'+esc(s.sk.substring(0,18))+'...</span></div></td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(s.last.substring(0,80))+'</td><td style="color:#9ba3af;white-space:nowrap">'+fmtDate(s.date)+'</td><td><span class="pill active"><span class="dot"></span>Bot actif</span></td></tr>';}).join('');
+  }catch(e){document.getElementById('recent-conversations').innerHTML='<tr><td class="empty-cell" colspan="4"><i class="ti ti-wifi-off"></i><p>Erreur connexion</p></td></tr>';}
 }
 
 async function loadKB(filter){
@@ -454,45 +328,16 @@ async function loadKB(filter){
     if(filter&&filter!=='all')url+='&category=eq.'+filter;
     var data=await supa(url)||[];
     document.getElementById('kb-total').textContent=data.length;
-    if(!data.length){
-      grid.innerHTML='<div style="grid-column:1/-1;padding:40px;text-align:center;color:#9ba3af"><i class="ti ti-database-off" style="font-size:28px;display:block;margin:0 auto 10px;color:#e5e7eb"></i>Aucune entrée dans cette catégorie</div>';
-      return;
-    }
-    grid.innerHTML=data.map(function(e){
-      var eJson=JSON.stringify(e).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-      return '<div class="kb-item"><div class="kb-body"><div class="kb-cat">'+esc(e.category)+'</div><div class="kb-title">'+esc(e.title)+'</div><div class="kb-preview">'+esc(e.content)+'</div></div><div class="kb-actions"><button class="icon-btn" onclick="editKB(\''+eJson+'\')" title="Modifier"><i class="ti ti-edit"></i></button><button class="icon-btn danger" onclick="deleteKB(\''+e.id+'\')" title="Supprimer"><i class="ti ti-trash"></i></button></div></div>';
-    }).join('');
-  }catch(e){
-    grid.innerHTML='<div style="grid-column:1/-1;padding:20px 18px;color:#ef4444;font-size:13px">Erreur Supabase : '+esc(e.message)+'</div>';
-  }
+    if(!data.length){grid.innerHTML='<div style="grid-column:1/-1;padding:40px;text-align:center;color:#9ba3af">Aucune entrée dans cette catégorie</div>';return;}
+    grid.innerHTML=data.map(function(e){var eJson=JSON.stringify(e).replace(/\\/g,'\\\\').replace(/'/g,"\\'");return '<div class="kb-item"><div class="kb-body"><div class="kb-cat">'+esc(e.category)+'</div><div class="kb-title">'+esc(e.title)+'</div><div class="kb-preview">'+esc(e.content)+'</div></div><div class="kb-actions"><button class="icon-btn" onclick="editKB(\''+eJson+'\')" title="Modifier"><i class="ti ti-edit"></i></button><button class="icon-btn danger" onclick="deleteKB(\''+e.id+'\')" title="Supprimer"><i class="ti ti-trash"></i></button></div></div>';}).join('');
+  }catch(e){grid.innerHTML='<div style="grid-column:1/-1;padding:20px;color:#ef4444">Erreur: '+esc(e.message)+'</div>';}
 }
 
-function filterKB(f,el){
-  currentFilter=f;
-  document.querySelectorAll('#kb-tabs .tab').forEach(function(t){t.classList.remove('active');});
-  if(el)el.classList.add('active');
-  loadKB(f);
-}
+function filterKB(f,el){currentFilter=f;document.querySelectorAll('#kb-tabs .tab').forEach(function(t){t.classList.remove('active');});if(el)el.classList.add('active');loadKB(f);}
 
-function editKB(eJson){
-  var e=JSON.parse(eJson);
-  editingId=e.id;
-  document.getElementById('modal-kb-title').textContent='Modifier l\'entrée';
-  document.getElementById('edit-kb-id').value=e.id;
-  document.getElementById('new-kb-cat').value=e.category;
-  document.getElementById('new-kb-title').value=e.title;
-  document.getElementById('new-kb-content').value=e.content;
-  openModal('add-kb');
-}
+function editKB(eJson){var e=JSON.parse(eJson);editingId=e.id;document.getElementById('modal-kb-title').textContent='Modifier l\'entrée';document.getElementById('edit-kb-id').value=e.id;document.getElementById('new-kb-cat').value=e.category;document.getElementById('new-kb-title').value=e.title;document.getElementById('new-kb-content').value=e.content;openModal('add-kb');}
 
-async function deleteKB(id){
-  if(!confirm('Supprimer cette entrée ?'))return;
-  try{
-    await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?id=eq.'+id,{method:'DELETE',headers:H});
-    notify('Entrée supprimée');
-    loadKB(currentFilter);
-  }catch(e){alert('Erreur: '+e.message);}
-}
+async function deleteKB(id){if(!confirm('Supprimer cette entrée ?'))return;try{await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?id=eq.'+id,{method:'DELETE',headers:H});notify('Entrée supprimée');loadKB(currentFilter);}catch(e){alert('Erreur: '+e.message);}}
 
 async function saveKBEntry(){
   var cat=document.getElementById('new-kb-cat').value;
@@ -501,22 +346,10 @@ async function saveKBEntry(){
   if(!title||!content){alert('Titre et contenu requis');return;}
   var body=JSON.stringify({category:cat,title:title,content:content,status:'verified_public',confidence:1.0,source:'back-office'});
   try{
-    if(editingId){
-      await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?id=eq.'+editingId,{method:'PATCH',headers:H,body:body});
-      notify('Entrée mise à jour ✓');
-    }else{
-      await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge',{method:'POST',headers:H,body:body});
-      notify('Entrée ajoutée ✓');
-    }
-    closeModal('add-kb');
-    editingId=null;
-    loadKB(currentFilter);
-    var kbR=await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?select=id',{headers:Object.assign({},H,{'Prefer':'count=exact'})});
-    var c=kbR.headers.get('content-range')?kbR.headers.get('content-range').split('/')[1]:'—';
-    document.getElementById('stat-kb').textContent=c;
-    document.getElementById('kb-badge').textContent=c;
-    document.getElementById('dash-kb-count').textContent=c+' entrées';
-  }catch(e){alert('Erreur Supabase: '+e.message);}
+    if(editingId){await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge?id=eq.'+editingId,{method:'PATCH',headers:H,body:body});notify('Entrée mise à jour ✓');}
+    else{await fetch(SUPA_URL+'/rest/v1/punta_lara_knowledge',{method:'POST',headers:H,body:body});notify('Entrée ajoutée ✓');}
+    closeModal('add-kb');editingId=null;loadKB(currentFilter);
+  }catch(e){alert('Erreur: '+e.message);}
 }
 
 async function loadConversations(){
@@ -525,99 +358,36 @@ async function loadConversations(){
   try{
     var msgs=await supa('punta_lara_faq_memory?select=session_key,message,role,created_at&order=created_at.desc&limit=300');
     var handoffs=await supa('punta_lara_handoff?select=session_key,status');
-    var hm={};
-    (handoffs||[]).forEach(function(h){hm[h.session_key]=h.status;});
-    var sm={};
-    (msgs||[]).forEach(function(m){
-      if(!sm[m.session_key])sm[m.session_key]={sk:m.session_key,last:m.message,date:m.created_at,n:0,lastUser:''};
-      sm[m.session_key].n++;
-      if(m.role==='user'&&!sm[m.session_key].lastUser)sm[m.session_key].lastUser=m.message;
-    });
+    var hm={};(handoffs||[]).forEach(function(h){hm[h.session_key]=h.status;});
+    var sm={};(msgs||[]).forEach(function(m){if(!sm[m.session_key])sm[m.session_key]={sk:m.session_key,last:m.message,date:m.created_at,n:0,lastUser:''};sm[m.session_key].n++;if(m.role==='user'&&!sm[m.session_key].lastUser)sm[m.session_key].lastUser=m.message;});
     var ss=Object.values(sm);
-    if(!ss.length){
-      tbody.innerHTML='<tr><td class="empty-cell" colspan="6"><i class="ti ti-inbox"></i><p>Aucune conversation</p></td></tr>';
-      return;
-    }
-    tbody.innerHTML=ss.map(function(s){
-      var isH=hm[s.sk]==='human';
-      var actionBtn=isH
-        ?'<button class="btn success" onclick="setHandoff(\''+s.sk+'\',\'bot\')" style="font-size:11px;padding:4px 10px"><i class="ti ti-robot"></i> Rendre au bot</button>'
-        :'<button class="btn" onclick="setHandoff(\''+s.sk+'\',\'human\')" style="font-size:11px;padding:4px 10px"><i class="ti ti-user"></i> Prendre la main</button>';
-      return '<tr><td><div style="display:flex;align-items:center;gap:10px"><div class="session-avatar">'+esc(s.sk.substring(0,2).toUpperCase())+'</div><span style="font-family:monospace;font-size:11px;color:#9ba3af">'+esc(s.sk.substring(0,16))+'...</span></div></td><td style="color:#6b7280">'+s.n+'</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc((s.lastUser||s.last).substring(0,60))+'</td><td style="color:#9ba3af;white-space:nowrap">'+fmtDate(s.date)+'</td><td>'+(isH?'<span class="pill human"><span class="dot"></span>Équipe</span>':'<span class="pill active"><span class="dot"></span>Bot</span>')+'</td><td>'+actionBtn+'</td></tr>';
-    }).join('');
-  }catch(e){
-    tbody.innerHTML='<tr><td class="empty-cell" colspan="6"><i class="ti ti-wifi-off"></i><p>Erreur Supabase</p></td></tr>';
-  }
+    if(!ss.length){tbody.innerHTML='<tr><td class="empty-cell" colspan="6"><i class="ti ti-inbox"></i><p>Aucune conversation</p></td></tr>';return;}
+    tbody.innerHTML=ss.map(function(s){var isH=hm[s.sk]==='human';var actionBtn=isH?'<button class="btn success" onclick="setHandoff(\''+s.sk+'\',\'bot\')" style="font-size:11px;padding:4px 10px"><i class="ti ti-robot"></i> Rendre au bot</button>':'<button class="btn" onclick="setHandoff(\''+s.sk+'\',\'human\')" style="font-size:11px;padding:4px 10px"><i class="ti ti-user"></i> Prendre la main</button>';return '<tr><td><div style="display:flex;align-items:center;gap:10px"><div class="session-avatar">'+esc(s.sk.substring(0,2).toUpperCase())+'</div><span style="font-family:monospace;font-size:11px;color:#9ba3af">'+esc(s.sk.substring(0,16))+'...</span></div></td><td style="color:#6b7280">'+s.n+'</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc((s.lastUser||s.last).substring(0,60))+'</td><td style="color:#9ba3af;white-space:nowrap">'+fmtDate(s.date)+'</td><td>'+(isH?'<span class="pill human"><span class="dot"></span>Équipe</span>':'<span class="pill active"><span class="dot"></span>Bot</span>')+'</td><td>'+actionBtn+'</td></tr>';}).join('');
+  }catch(e){tbody.innerHTML='<tr><td class="empty-cell" colspan="6"><i class="ti ti-wifi-off"></i><p>Erreur</p></td></tr>';}
 }
 
 async function setHandoff(sk,status){
   try{
     var ex=await supa('punta_lara_handoff?session_key=eq.'+encodeURIComponent(sk));
     var body=JSON.stringify({session_key:sk,status:status,taken_at:status==='human'?new Date().toISOString():null,released_at:status==='bot'?new Date().toISOString():null,updated_at:new Date().toISOString()});
-    if(ex&&ex.length){
-      await fetch(SUPA_URL+'/rest/v1/punta_lara_handoff?session_key=eq.'+encodeURIComponent(sk),{method:'PATCH',headers:H,body:body});
-    }else{
-      await fetch(SUPA_URL+'/rest/v1/punta_lara_handoff',{method:'POST',headers:H,body:body});
-    }
-    notify(status==='human'?'Main prise — bot suspendu ✓':'Rendu au bot ✓');
-    loadConversations();
+    if(ex&&ex.length)await fetch(SUPA_URL+'/rest/v1/punta_lara_handoff?session_key=eq.'+encodeURIComponent(sk),{method:'PATCH',headers:H,body:body});
+    else await fetch(SUPA_URL+'/rest/v1/punta_lara_handoff',{method:'POST',headers:H,body:body});
+    notify(status==='human'?'Main prise ✓':'Rendu au bot ✓');loadConversations();
   }catch(e){alert('Erreur: '+e.message);}
 }
 
-var pages={
-  dashboard:{title:'Tableau de bord',badge:'green',bt:'<i class="ti ti-circle-check" style="font-size:11px"></i> Bot actif'},
-  kb:{title:'Base de connaissance',badge:'green',bt:'Supabase live'},
-  conversations:{title:'Conversations',badge:'green',bt:'Live'},
-  reservations:{title:'Réservations',badge:'orange',bt:'Roadmap prod'},
-  devis:{title:'Devis & factures',badge:'orange',bt:'Roadmap prod'},
-  settings:{title:'Paramètres',badge:'',bt:''}
-};
+var pages={dashboard:{title:'Tableau de bord',badge:'green',bt:'<i class="ti ti-circle-check" style="font-size:11px"></i> Bot actif'},kb:{title:'Base de connaissance',badge:'green',bt:'Supabase live'},conversations:{title:'Conversations',badge:'green',bt:'Live'},reservations:{title:'Réservations',badge:'orange',bt:'Roadmap prod'},devis:{title:'Devis & factures',badge:'orange',bt:'Roadmap prod'},settings:{title:'Paramètres',badge:'',bt:''}};
 
-function showPage(name,btn){
-  document.querySelectorAll('[id^="page-"]').forEach(function(el){el.style.display='none';});
-  document.getElementById('page-'+name).style.display='';
-  document.querySelectorAll('.nav-item').forEach(function(el){el.classList.remove('active');});
-  if(btn)btn.classList.add('active');
-  var p=pages[name];
-  document.getElementById('page-title').textContent=p.title;
-  var badge=document.getElementById('page-badge');
-  if(p.bt){badge.innerHTML=p.bt;badge.className='topbar-badge '+p.badge;badge.style.display='';}
-  else badge.style.display='none';
-  var cta=document.getElementById('topbar-cta');
-  if(name==='kb'){cta.innerHTML='<i class="ti ti-plus"></i> Nouvelle entrée';cta.onclick=function(){openModal('add-kb');};cta.style.display='';}
-  else if(name==='conversations'){cta.innerHTML='<i class="ti ti-refresh"></i> Actualiser';cta.onclick=loadConversations;cta.style.display='';}
-  else if(name==='dashboard'){cta.innerHTML='<i class="ti ti-refresh"></i> Actualiser';cta.onclick=loadDashboard;cta.style.display='';}
-  else cta.style.display='none';
-  if(name==='kb')loadKB(currentFilter);
-  if(name==='conversations')loadConversations();
-  if(name==='dashboard')loadDashboard();
-}
+function showPage(name,btn){document.querySelectorAll('[id^="page-"]').forEach(function(el){el.style.display='none';});document.getElementById('page-'+name).style.display='';document.querySelectorAll('.nav-item').forEach(function(el){el.classList.remove('active');});if(btn)btn.classList.add('active');var p=pages[name];document.getElementById('page-title').textContent=p.title;var badge=document.getElementById('page-badge');if(p.bt){badge.innerHTML=p.bt;badge.className='topbar-badge '+p.badge;badge.style.display='';}else badge.style.display='none';var cta=document.getElementById('topbar-cta');if(name==='kb'){cta.innerHTML='<i class="ti ti-plus"></i> Nouvelle entrée';cta.onclick=function(){openModal('add-kb');};cta.style.display='';}else if(name==='conversations'){cta.innerHTML='<i class="ti ti-refresh"></i> Actualiser';cta.onclick=loadConversations;cta.style.display='';}else if(name==='dashboard'){cta.innerHTML='<i class="ti ti-refresh"></i> Actualiser';cta.onclick=loadDashboard;cta.style.display='';}else cta.style.display='none';if(name==='kb')loadKB(currentFilter);if(name==='conversations')loadConversations();if(name==='dashboard')loadDashboard();}
 
-function openModal(n){
-  if(n==='add-kb'){
-    editingId=null;
-    document.getElementById('modal-kb-title').textContent='Nouvelle entrée KB';
-    document.getElementById('new-kb-title').value='';
-    document.getElementById('new-kb-content').value='';
-  }
-  document.getElementById('modal-'+n).classList.add('open');
-}
+function openModal(n){if(n==='add-kb'){editingId=null;document.getElementById('modal-kb-title').textContent='Nouvelle entrée KB';document.getElementById('new-kb-title').value='';document.getElementById('new-kb-content').value='';}document.getElementById('modal-'+n).classList.add('open');}
 function closeModal(n){document.getElementById('modal-'+n).classList.remove('open');}
-function notify(msg){
-  var n=document.getElementById('notif');
-  document.getElementById('notif-text').textContent=msg;
-  n.classList.add('show');
-  setTimeout(function(){n.classList.remove('show');},2500);
-}
+function notify(msg){var n=document.getElementById('notif');document.getElementById('notif-text').textContent=msg;n.classList.add('show');setTimeout(function(){n.classList.remove('show');},2500);}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function fmtDate(d){
-  if(!d)return'—';
-  var dt=new Date(d);
-  return dt.toLocaleDateString('fr-FR',{day:'2-digit',month:'short'})+' '+dt.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
-}
+function fmtDate(d){if(!d)return'—';var dt=new Date(d);return dt.toLocaleDateString('fr-FR',{day:'2-digit',month:'short'})+' '+dt.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});}
+function logout(){sessionStorage.clear();window.location.href='/login.html';}
 
-async function logout(){await _supa.auth.signOut();window.location.href='/login.html';}
-initAuth().then(function(ok){if(ok)loadDashboard();});
+if(initAuth())loadDashboard();
 </script>
 </body>
 </html>
