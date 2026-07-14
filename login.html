@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>France Agent IA — Connexion</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:#f5f6fa;min-height:100vh;display:flex;align-items:center;justify-content:center}
@@ -18,97 +17,60 @@ body{font-family:'Inter',sans-serif;background:#f5f6fa;min-height:100vh;display:
 .form-label{font-size:12px;color:#374151;font-weight:500;display:block;margin-bottom:6px}
 .form-input{width:100%;padding:10px 12px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#1a1d23;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border 0.12s}
 .form-input:focus{border-color:#1d6bf3;box-shadow:0 0 0 3px rgba(29,107,243,0.1)}
-.input-wrap{position:relative}
-.input-wrap i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#9ba3af;font-size:16px}
-.input-wrap .form-input{padding-left:38px}
 .btn-login{width:100%;padding:11px;background:#1d6bf3;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:background 0.12s;margin-top:8px}
 .btn-login:hover{background:#1558d6}
 .btn-login:disabled{background:#93c5fd;cursor:not-allowed}
 .error{background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;font-size:13px;color:#ef4444;margin-bottom:16px;display:none}
 .footer{text-align:center;margin-top:24px;font-size:12px;color:#9ba3af}
-.loader{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:6px}
-@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 <div class="card">
-  <div class="logo-wrap">
-    <img src="/assets/logo.png" alt="France Agent IA">
-  </div>
+  <div class="logo-wrap"><img src="/assets/logo.png" alt="France Agent IA"></div>
   <div class="title">Espace client</div>
   <div class="subtitle">Connectez-vous pour accéder à votre back-office</div>
-
   <div class="error" id="error-msg"></div>
-
   <div class="form-group">
     <label class="form-label">Adresse email</label>
-    <div class="input-wrap">
-      <i class="ti ti-mail"></i>
-      <input type="email" class="form-input" id="email" placeholder="votre@email.com" autocomplete="email">
-    </div>
+    <input type="email" class="form-input" id="email" placeholder="votre@email.com" autocomplete="email">
   </div>
   <div class="form-group">
     <label class="form-label">Mot de passe</label>
-    <div class="input-wrap">
-      <i class="ti ti-lock"></i>
-      <input type="password" class="form-input" id="password" placeholder="••••••••" autocomplete="current-password">
-    </div>
+    <input type="password" class="form-input" id="password" placeholder="••••••••" autocomplete="current-password">
   </div>
-
-  <button class="btn-login" id="btn-login" onclick="login()">Se connecter</button>
-
+  <button class="btn-login" id="btn-login">Se connecter</button>
   <div class="footer">France Agent IA — Accès sécurisé</div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPA_URL = 'https://stokclikeifskbheumfj.supabase.co';
-const SUPA_KEY = 'sb_publishable_QbxqFhD_MPAofn3kTl8Yxg_EVzf-dkN';
-const supabase = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+var SUPA_URL = 'https://stokclikeifskbheumfj.supabase.co';
+var ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0b2tjbGlrZWlmc2tiaGV1bWZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM5Njc2MzcsImV4cCI6MjA5OTU0MzYzN30.k0UbuLxR1fqgsj3-5J935E12sVSyqD_Ta6QKrbLRnR4';
 
-// Si déjà connecté → rediriger directement
-supabase.auth.getSession().then(function(res) {
-  if (res.data && res.data.session) {
-    window.location.href = '/backoffice.html';
-  }
-});
-
-document.getElementById('password').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') login();
-});
+document.getElementById('password').addEventListener('keydown', function(e){ if(e.key==='Enter') login(); });
+document.getElementById('btn-login').addEventListener('click', login);
 
 async function login() {
   var email = document.getElementById('email').value.trim();
   var password = document.getElementById('password').value;
   var btn = document.getElementById('btn-login');
   var err = document.getElementById('error-msg');
-
-  if (!email || !password) {
-    showError('Veuillez remplir tous les champs.');
-    return;
+  if(!email||!password){showError('Veuillez remplir tous les champs.');return;}
+  btn.disabled=true; btn.textContent='Connexion...'; err.style.display='none';
+  try {
+    var res = await fetch(SUPA_URL+'/auth/v1/token?grant_type=password', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':ANON_KEY},
+      body:JSON.stringify({email:email,password:password})
+    });
+    var data = await res.json();
+    if(!res.ok||data.error){showError('Email ou mot de passe incorrect.');btn.disabled=false;btn.textContent='Se connecter';return;}
+    sessionStorage.setItem('sb_access_token', data.access_token);
+    sessionStorage.setItem('sb_user_email', data.user.email);
+    window.location.href='/backoffice.html';
+  } catch(e) {
+    showError('Erreur réseau. Réessayez.');btn.disabled=false;btn.textContent='Se connecter';
   }
-
-  btn.disabled = true;
-  btn.innerHTML = '<span class="loader"></span>Connexion...';
-  err.style.display = 'none';
-
-  var res = await supabase.auth.signInWithPassword({ email: email, password: password });
-
-  if (res.error) {
-    showError('Email ou mot de passe incorrect.');
-    btn.disabled = false;
-    btn.innerHTML = 'Se connecter';
-    return;
-  }
-
-  window.location.href = '/backoffice.html';
 }
-
-function showError(msg) {
-  var err = document.getElementById('error-msg');
-  err.textContent = msg;
-  err.style.display = 'block';
-}
+function showError(msg){var e=document.getElementById('error-msg');e.textContent=msg;e.style.display='block';}
 </script>
 </body>
 </html>
