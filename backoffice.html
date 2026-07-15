@@ -85,7 +85,6 @@ tbody tr:hover td{background:#f9fafb}
 .tab{padding:10px 14px;font-size:12px;color:#9ba3af;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.12s;white-space:nowrap;font-weight:500}
 .tab.active{color:#1d6bf3;border-bottom-color:#1d6bf3}
 .tab:hover:not(.active){color:#374151}
-/* KB : une colonne, preview sur 2 lignes */
 .kb-grid{display:grid;grid-template-columns:1fr}
 .kb-item{padding:12px 18px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:12px;transition:background 0.1s}
 .kb-item:hover{background:#f9fafb}
@@ -267,6 +266,8 @@ var _token=null;
 var H={};
 var kbStore={};
 var editingId=null;
+var currentPage='dashboard';
+var autoRefreshTimer=null;
 
 function initAuth(){
   var token=sessionStorage.getItem('sb_access_token');
@@ -384,7 +385,6 @@ async function saveKBEntry(){
 
 async function loadConversations(){
   var tbody=document.getElementById('conv-table');
-  tbody.innerHTML='<tr><td class="empty-cell" colspan="6"><div class="loader"></div></td></tr>';
   try{
     var msgs=await supa('punta_lara_faq_memory?select=session_key,message,role,created_at&order=created_at.desc&limit=300');
     var handoffs=await supa('punta_lara_handoff?select=session_key,status');
@@ -412,9 +412,18 @@ async function setHandoff(sk,status){
   }catch(e){alert('Erreur: '+e.message);}
 }
 
+function startAutoRefresh(){
+  if(autoRefreshTimer)clearInterval(autoRefreshTimer);
+  autoRefreshTimer=setInterval(function(){
+    if(currentPage==='conversations')loadConversations();
+    else if(currentPage==='dashboard')loadDashboard();
+  },30000);
+}
+
 var pages={dashboard:{title:'Tableau de bord',badge:'green',bt:'<i class="ti ti-circle-check" style="font-size:11px"></i> Bot actif'},kb:{title:'Base de connaissance',badge:'green',bt:'Supabase live'},conversations:{title:'Conversations',badge:'green',bt:'Live'},reservations:{title:'Réservations',badge:'orange',bt:'Roadmap prod'},devis:{title:'Devis & factures',badge:'orange',bt:'Roadmap prod'},settings:{title:'Paramètres',badge:'',bt:''}};
 
 function showPage(name,btn){
+  currentPage=name;
   document.querySelectorAll('[id^="page-"]').forEach(function(el){el.style.display='none';});
   document.getElementById('page-'+name).style.display='';
   document.querySelectorAll('.nav-item').forEach(function(el){el.classList.remove('active');});
@@ -438,7 +447,7 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 function fmtDate(d){if(!d)return'—';var dt=new Date(d);return dt.toLocaleDateString('fr-FR',{day:'2-digit',month:'short'})+' '+dt.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});}
 function logout(){sessionStorage.clear();window.location.href='/login.html';}
 
-if(initAuth())loadDashboard();
+if(initAuth()){loadDashboard();startAutoRefresh();}
 </script>
 </body>
 </html>
