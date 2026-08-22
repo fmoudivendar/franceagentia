@@ -1,1 +1,416 @@
-voir contenu via bash
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="N3FtAcRNJ1Cm2kD8PPYL4_dTnwru4D7Oeh6oQ1cq4R4">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistant IA & Automatisation WhatsApp pour PME — France Agent IA</title>
+  <meta name="description" content="Votre assistant répond sur WhatsApp, qualifie vos prospects et gère les tâches répétitives 24h/24. PME, immobilier, séminaires, artisans. Démo gratuite.">
+  <meta name="author" content="France Agent IA">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://franceagentia.com/">
+  <meta property="og:title" content="Assistant IA & Automatisation WhatsApp pour PME — France Agent IA">
+  <meta property="og:description" content="Votre assistant répond à vos clients sur WhatsApp, qualifie vos prospects et gère les tâches répétitives 24h/24.">
+  <meta property="og:image" content="/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://franceagentia.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="France Agent IA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Assistant IA & Automatisation WhatsApp pour PME — France Agent IA">
+  <meta name="twitter:description" content="Votre assistant répond à vos clients sur WhatsApp, qualifie vos prospects et gère vos tâches répétitives — 24h/24.">
+  <meta name="twitter:image" content="/assets/og-image.jpg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://franceagentia.com/#organization","name":"France Agent IA","description":"Automatisation des tâches répétitives pour les PME françaises.","url":"https://franceagentia.com","telephone":"+33601347652","email":"felix@franceagentia.fr","areaServed":{"@type":"Country","name":"France"},"priceRange":"€€","founder":{"@type":"Person","name":"Félix Moudivendar","jobTitle":"Fondateur, France Agent IA"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quelles tâches répétitives peut automatiser un assistant IA pour une PME ?","acceptedAnswer":{"@type":"Answer","text":"Réponses aux questions fréquentes, qualification des leads, confirmations de RDV, rappels automatiques, relances de prospects, prise de rendez-vous 24h/24, envoi de documents."}},{"@type":"Question","name":"Comment fonctionne l'automatisation WhatsApp pour une entreprise ?","acceptedAnswer":{"@type":"Answer","text":"L'agent IA est connecté à votre numéro WhatsApp Business existant. Lorsqu'un client envoie un message, l'agent analyse la demande et répond instantanément, 24h/24."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://franceagentia.com/#website","url":"https://franceagentia.com/","name":"France Agent IA","inLanguage":"fr-FR"}</script>
+  <link rel="icon" type="image/png" href="/assets/favicon.png" onerror="this.href='https://i.imgur.com/bKQ6uBz.jpg'">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0a1628; color: white; overflow-x: hidden; }
+    @keyframes typing { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+    @keyframes pulse-green { 0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.4); } 50% { box-shadow: 0 0 0 12px rgba(37,211,102,0); } }
+    .animate-on-scroll { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 80px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.95); backdrop-filter: blur(10px); }
+    .logo img { height: 44px; border-radius: 10px; }
+    .logo-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-name { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
+    .logo-name .fr-bleu { color: #002395; }
+    .logo-name .fr-blanc { color: #ffffff; }
+    .logo-name .fr-rouge { color: #ED2939; }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+    .nav-links a:hover { opacity: 0.8; }
+    .btn-contact { color: white; padding: 11px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 7px; border: 1px solid rgba(255,255,255,0.3); font-size: 14px; transition: all 0.3s; }
+    .btn-contact:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+    .btn-demo { background: linear-gradient(135deg,#25d366,#1da851); color: white !important; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: transform 0.3s, box-shadow 0.3s; }
+    .btn-demo:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.35); }
+    .hero { position: relative; padding: 140px 80px 100px; min-height: 100vh; background: linear-gradient(135deg,#0a1628 0%,#132240 100%); }
+    .hero-content { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; gap: 30px; max-width: 1100px; margin: 0 auto; }
+    .hero-left { max-width: 600px; }
+    .hero-title { font-size: 52px; font-weight: 800; line-height: 1.15; margin-bottom: 22px; }
+    .hero-title .accent { color: #25d366; }
+    .hero-title .highlight { font-family: 'Playfair Display', serif; font-style: italic; color: #94a3b8; font-weight: 700; }
+    .hero-description { font-size: 18px; color: #94a3b8; line-height: 1.7; margin-bottom: 28px; }
+    .hero-description strong { color: white; }
+    .hero-proof { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; padding: 12px 18px; background: rgba(37,211,102,0.08); border: 1px solid rgba(37,211,102,0.25); border-radius: 12px; width: fit-content; }
+    .proof-dot { width: 8px; height: 8px; background: #25d366; border-radius: 50%; animation: pulse-green 2s infinite; flex-shrink: 0; }
+    .hero-proof span { font-size: 14px; color: #a7f3d0; font-weight: 500; }
+    .hero-buttons { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 44px; }
+    .btn-primary { background: linear-gradient(135deg,#25d366,#1da851); color: white; padding: 18px 36px; border-radius: 50px; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 10px; transition: transform 0.3s, box-shadow 0.3s; font-size: 16px; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(37,211,102,0.35); }
+    .cta-subtext { font-size: 13px; color: #64748b; margin-left: 5px; }
+    .stats { display: flex; gap: 40px; }
+    .stat { text-align: center; }
+    .stat-number { font-size: 36px; font-weight: 800; }
+    .stat-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+    .hero-right { position: relative; display: flex; align-items: center; justify-content: center; }
+    .wa-phone { width: 270px; background: #1a1a1a; border-radius: 36px; padding: 8px; box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 30px 70px rgba(0,0,0,0.7); }
+    .wa-phone-inner { background: #000; border-radius: 29px; overflow: hidden; }
+    .whatsapp-header { background: linear-gradient(135deg,#075e54,#128c7e); padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+    .whatsapp-avatar { width: 36px; height: 36px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; }
+    .whatsapp-info h4 { font-size: 14px; font-weight: 600; }
+    .whatsapp-status { font-size: 11px; color: rgba(255,255,255,0.7); }
+    .wa-chat-area { height: 310px; overflow: hidden; display: flex; flex-direction: column; gap: 3px; padding: 10px 8px; background: #0b141a; }
+    .message { max-width: 85%; padding: 8px 12px; border-radius: 10px; font-size: 12px; line-height: 1.4; }
+    .message-user { background: #005c4b; align-self: flex-end; }
+    .message-bot { background: #1f2c34; align-self: flex-start; }
+    .message-time { font-size: 9px; color: rgba(255,255,255,0.5); text-align: right; margin-top: 3px; }
+    .message-check { color: #53bdeb; }
+    .wa-typing { background: #202c33; align-self: flex-start; padding: 9px 13px; border-radius: 7.5px; display: flex; gap: 4px; align-items: center; }
+    .wa-typing span { width: 6px; height: 6px; background: #8696a0; border-radius: 50%; display: inline-block; animation: typing 1.4s infinite; }
+    .wa-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .wa-typing span:nth-child(3) { animation-delay: 0.4s; }
+    .whatsapp-input { background: #1f2c34; padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
+    .whatsapp-input input { flex: 1; background: #2a3942; border: none; padding: 10px 14px; border-radius: 20px; color: white; font-size: 12px; }
+    .whatsapp-send { width: 38px; height: 38px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .floating-cta { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999; background: linear-gradient(135deg,#25d366,#1da851); color: white; padding: 16px 28px; border-radius: 50px; font-weight: 700; font-size: 15px; text-decoration: none; box-shadow: 0 8px 30px rgba(37,211,102,0.45); white-space: nowrap; align-items: center; gap: 10px; }
+    .wave-divider { position: relative; height: 80px; margin-top: -1px; }
+    .wave-divider svg { position: absolute; bottom: 0; width: 100%; height: 80px; }
+    section { padding: 100px 80px; }
+    .section-label { color: #e63946; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; text-align: center; }
+    .section-title { font-size: 44px; font-weight: 800; margin-bottom: 20px; text-align: center; }
+    .section-title .highlight { font-family: 'Playfair Display', serif; font-style: italic; color: #94a3b8; font-weight: 700; }
+    .section-subtitle { text-align: center; color: #94a3b8; font-size: 18px; max-width: 600px; margin: 0 auto 60px; line-height: 1.6; }
+    .problems { background: #0d1117; }
+    .problems-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 25px; max-width: 1100px; margin: 0 auto; }
+    .problem-card { background: linear-gradient(145deg,rgba(31,41,55,0.5),rgba(17,24,39,0.8)); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 30px; }
+    .problem-emoji { font-size: 36px; margin-bottom: 15px; }
+    .problem-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: white; }
+    .problem-card p { color: #94a3b8; font-size: 14px; line-height: 1.6; }
+    .how-it-works { background: #111827; }
+    .steps { display: flex; justify-content: center; gap: 100px; margin-top: 60px; }
+    .step { text-align: center; position: relative; }
+    .step-icon { width: 130px; height: 130px; background: linear-gradient(145deg,#1f2937,#151d2a); border: 2px solid #374151; border-radius: 28px; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; position: relative; }
+    .step-icon svg { width: 50px; height: 50px; stroke: #60a5fa; }
+    .step-number { position: absolute; top: -12px; right: -12px; width: 36px; height: 36px; background: linear-gradient(135deg,#e63946,#c62828); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+    .step h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .step p { color: #94a3b8; font-size: 15px; max-width: 220px; margin: 0 auto; line-height: 1.6; }
+    .solutions { background: #0d1117; }
+    .solutions-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 40px; max-width: 1100px; margin: 0 auto; }
+    .solution-card { background: linear-gradient(145deg,rgba(31,41,55,0.5),rgba(17,24,39,0.8)); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 40px; text-decoration: none; color: white; display: block; transition: transform 0.3s, box-shadow 0.3s; }
+    .solution-card:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
+    .solution-icon { width: 60px; height: 60px; background: rgba(230,57,70,0.15); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; font-size: 28px; }
+    .solution-badge { color: #e63946; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+    .solution-card h3 { font-size: 26px; font-weight: 700; margin-bottom: 15px; }
+    .solution-card > p { color: #94a3b8; line-height: 1.7; margin-bottom: 30px; }
+    .solution-features { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .solution-feature { display: flex; align-items: flex-start; gap: 12px; }
+    .solution-feature-icon { width: 36px; height: 36px; background: rgba(230,57,70,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #e63946; font-size: 16px; }
+    .solution-feature span { font-size: 14px; color: #cbd5e1; line-height: 1.4; }
+    .solution-link { display: inline-flex; align-items: center; gap: 6px; color: #60a5fa; font-size: 13px; font-weight: 600; margin-top: 20px; }
+    .advantages { background: #111827; }
+    .advantages-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; max-width: 1100px; margin: 0 auto; }
+    .advantage-card { background: linear-gradient(145deg,rgba(31,41,55,0.4),rgba(17,24,39,0.6)); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 35px; transition: transform 0.3s; }
+    .advantage-card:hover { transform: translateY(-5px); }
+    .advantage-icon { width: 50px; height: 50px; margin-bottom: 20px; color: #60a5fa; }
+    .advantage-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .advantage-card p { color: #94a3b8; font-size: 15px; line-height: 1.6; }
+    .faq-section { background: #0d1117; }
+    .faq-grid { max-width: 800px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 25px 0; }
+    .faq-item h3 { font-size: 18px; font-weight: 600; color: white; margin-bottom: 12px; }
+    .faq-item p { color: #94a3b8; font-size: 15px; line-height: 1.7; }
+    .cta-section { background: #0d1117; padding: 80px; }
+    .cta-box { background: linear-gradient(135deg,#1e3a5f 0%,#0f2744 100%); border-radius: 32px; padding: 80px; text-align: center; max-width: 900px; margin: 0 auto; }
+    .cta-box h2 { font-size: 42px; font-weight: 800; margin-bottom: 20px; }
+    .cta-box > p { color: #94a3b8; font-size: 18px; margin-bottom: 40px; }
+    .cta-buttons { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 30px; }
+    .cta-features { display: flex; justify-content: center; gap: 30px; color: #94a3b8; font-size: 14px; }
+    footer { background: #0a1220; padding: 80px 80px 40px; }
+    .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-brand img { height: 52px; border-radius: 12px; margin-bottom: 20px; }
+    .footer-brand p { color: #475569; font-size: 14px; line-height: 1.7; max-width: 280px; }
+    .footer-column h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-bottom: 20px; }
+    .footer-column a { display: block; color: #475569; text-decoration: none; font-size: 14px; margin-bottom: 12px; transition: color 0.3s; }
+    .footer-column a:hover { color: white; }
+    .footer-contact { display: flex; flex-direction: column; gap: 12px; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; color: #475569; font-size: 14px; }
+    .footer-contact-item a { color: #475569; text-decoration: none; transition: color 0.3s; }
+    .footer-contact-item a:hover { color: white; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-bottom p { color: #334155; font-size: 14px; }
+    .footer-flag { display: flex; height: 20px; border-radius: 4px; overflow: hidden; }
+    .flag-blue, .flag-white, .flag-red { width: 20px; }
+    .flag-blue { background: #002395; }
+    .flag-white { background: #EDEDED; }
+    .flag-red { background: #ED2939; }
+    @media (max-width: 1024px) { nav { padding: 15px 30px; } .hero { padding: 120px 30px 80px; } .hero-content { flex-direction: column; } .hero-title { font-size: 40px; } section { padding: 60px 30px; } .problems-grid { grid-template-columns: repeat(2,1fr); } .steps { gap: 40px; flex-wrap: wrap; } .solutions-grid { grid-template-columns: 1fr; } .advantages-grid { grid-template-columns: repeat(2,1fr); } .footer-content { grid-template-columns: 1fr 1fr; gap: 40px; } }
+    @media (max-width: 768px) { .nav-links a:not(.btn-demo):not(.btn-contact) { display: none; } .btn-contact { display: none; } .hero-title { font-size: 32px; } .problems-grid { grid-template-columns: 1fr; } .advantages-grid { grid-template-columns: 1fr; } .stats { gap: 20px; } .cta-box { padding: 40px 20px; } .cta-box h2 { font-size: 28px; } .cta-features { flex-direction: column; gap: 10px; align-items: center; } .footer-content { grid-template-columns: 1fr; } footer { padding: 40px 20px; } .footer-bottom { flex-direction: column; gap: 15px; } .floating-cta { display: flex !important; } section { padding: 60px 20px; } .hero { padding: 90px 20px 40px; } }
+  </style>
+</head>
+<body>
+
+  <a href="https://wa.me/33601347652?text=Bonjour,%20je%20voudrais%20tester%20l%27assistant%20!" rel="noopener noreferrer" class="floating-cta" id="floating-cta">
+    <span>💬</span> Tester l'assistant
+  </a>
+
+  <nav>
+    <div class="logo"><a href="index.html" class="logo-brand"><img src="/assets/logo.png" onerror="this.src='https://i.imgur.com/bKQ6uBz.jpg'" alt="France Agent IA"><span class="logo-name"><span class="fr-bleu">France</span> <span class="fr-blanc">Agent</span> <span class="fr-rouge">IA</span></span></a></div>
+    <div class="nav-links">
+      <a href="#solutions">Solutions</a>
+      <a href="#avantages">Avantages</a>
+      <a href="blog.html">Blog</a>
+      <a href="https://wa.me/33619575432?text=Bonjour%20F%C3%A9lix,%20j%27ai%20visit%C3%A9%20votre%20site%20et%20je%20voudrais%20en%20savoir%20plus%20!" rel="noopener noreferrer" class="btn-contact"><svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.477 2 2 6.477 2 12c0 1.99.578 3.842 1.577 5.4L2 22l4.744-1.545A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.521 2 11.998 2z"/></svg>Contactez-moi</a>
+      <a href="https://wa.me/33601347652?text=Bonjour,%20je%20voudrais%20voir%20une%20d%C3%A9mo%20!" rel="noopener noreferrer" class="btn-demo"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Testez, je vous réponds</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-left">
+        <h1 class="hero-title">Votre assistant <span class="accent">WhatsApp</span> répond à vos clients, récupère vos prospects et vous libère des tâches <span class="highlight">répétitives</span></h1>
+        <p class="hero-description">Pendant que vous gérez l'essentiel, votre assistant répond à vos clients, qualifie vos prospects et relance automatiquement — <strong>24h/24, même le week-end.</strong></p>
+        <div class="hero-proof"><div class="proof-dot"></div><span>Réponse instantanée · Disponible 24h/24 · Personnalisé à votre activité</span></div>
+        <div class="hero-buttons">
+          <a href="https://wa.me/33601347652?text=Bonjour,%20je%20voudrais%20voir%20une%20d%C3%A9mo%20!" rel="noopener noreferrer" class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Testez, je vous réponds</a>
+          <span class="cta-subtext">✓ Sans engagement · ✓ Sans inscription · ✓ Réponse immédiate</span>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat-number" style="color:#25d366">24h/24</div><div class="stat-label">Disponible</div></div>
+          <div class="stat"><div class="stat-number" style="color:#e63946">Déductible</div><div class="stat-label">De vos charges</div></div>
+          <div class="stat"><div class="stat-number" style="color:#60a5fa">100%</div><div class="stat-label">Personnalisé</div></div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="wa-phone">
+          <div class="wa-phone-inner">
+            <div style="background:#075e54;padding:5px 12px 4px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:white;">9:41</span></div>
+            <div class="whatsapp-header" style="padding:8px 12px;">
+              <div class="whatsapp-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">IA</div>
+              <div class="whatsapp-info"><h4>Assistant IA</h4><div class="whatsapp-status">en ligne</div></div>
+            </div>
+            <div class="wa-chat-area" id="chat-container" style="display:flex;flex-direction:column;gap:6px;"></div>
+            <div class="whatsapp-input">
+              <input type="text" placeholder="Message" readonly>
+              <div class="whatsapp-send"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider"><svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#111827"/></svg></div>
+
+  <section class="problems">
+    <div class="section-label animate-on-scroll">Situations reconnues</div>
+    <h2 class="section-title animate-on-scroll">Vous en avez assez de <span class="highlight">répéter</span> toujours la même chose ?</h2>
+    <p class="section-subtitle animate-on-scroll">Ces situations, votre assistant les gère à votre place. Automatiquement.</p>
+    <div class="problems-grid">
+      <div class="problem-card animate-on-scroll"><div class="problem-emoji">🔁</div><h3>Trop de questions répétitives</h3><p>Vos clients posent toujours les mêmes questions. L'agent traite automatiquement la grande majorité des demandes répétitives.</p></div>
+      <div class="problem-card animate-on-scroll"><div class="problem-emoji">❄️</div><h3>Leads qui refroidissent</h3><p>Un prospect sans réponse dans l'heure contacte votre concurrent. L'agent prend en charge chaque message instantanément, 24h/24.</p></div>
+      <div class="problem-card animate-on-scroll"><div class="problem-emoji">📋</div><h3>Qualification manuelle épuisante</h3><p>Trier les leads sérieux des curieux vous prend des heures. L'agent qualifie automatiquement chaque prospect selon vos critères.</p></div>
+      <div class="problem-card animate-on-scroll"><div class="problem-emoji">📵</div><h3>Appels et messages manqués</h3><p>En réunion, en déplacement, le week-end. L'agent ne rate jamais un contact, même à 23h.</p></div>
+      <div class="problem-card animate-on-scroll"><div class="problem-emoji">📬</div><h3>Relances oubliées</h3><p>Les prospects qui ne répondent pas sont automatiquement relancés au bon moment, sans effort de votre part.</p></div>
+      <div class="problem-card animate-on-scroll"><div class="problem-emoji">⏱️</div><h3>Administratif chronophage</h3><p>Confirmations, rappels, inscriptions, FAQ : l'agent gère tout le cycle administratif répétitif à votre place.</p></div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <div class="section-label animate-on-scroll">Fonctionnement</div>
+    <h2 class="section-title animate-on-scroll">Simple à mettre en <span class="highlight">place</span></h2>
+    <p class="section-subtitle animate-on-scroll">Pas d'outil à apprendre. Pas de code. On s'en occupe pour vous.</p>
+    <div class="steps">
+      <div class="step animate-on-scroll"><div class="step-icon"><span class="step-number">01</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><h3>On configure votre agent</h3><p>Nous paramétrons l'agent selon votre activité, vos cas d'usage et votre ton.</p></div>
+      <div class="step animate-on-scroll"><div class="step-icon"><span class="step-number">02</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><h3>L'agent gère les tâches répétitives</h3><p>Il répond, qualifie, confirme, relance. 24h/24, sans jamais se fatiguer.</p></div>
+      <div class="step animate-on-scroll"><div class="step-icon"><span class="step-number">03</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3>Vous gérez l'essentiel</h3><p>Vous recevez uniquement les vrais prospects qualifiés. Vous gardez le contrôle total.</p></div>
+    </div>
+  </section>
+
+  <section class="solutions" id="solutions">
+    <div class="section-label animate-on-scroll">Solutions</div>
+    <h2 class="section-title animate-on-scroll">Adapté à <span class="highlight">votre</span> activité</h2>
+    <div class="solutions-grid">
+      <a href="assistant-ia-seminaire-evenement.html" class="solution-card animate-on-scroll"><div class="solution-icon">🎤</div><div class="solution-badge">Gagnez du temps sur tout le cycle participant</div><h3>Séminaires & Événements</h3><p>Inscriptions, confirmations, rappels, FAQ participants, envoi du replay : l'agent gère tout le cycle avant et après votre événement.</p><div class="solution-features"><div class="solution-feature"><div class="solution-feature-icon">✅</div><span>Confirmations instantanées</span></div><div class="solution-feature"><div class="solution-feature-icon">🔔</div><span>Rappels J-7, J-1, H-1 auto</span></div><div class="solution-feature"><div class="solution-feature-icon">❓</div><span>FAQ participants 24h/24</span></div><div class="solution-feature"><div class="solution-feature-icon">📹</div><span>Envoi replay automatique</span></div></div><span class="solution-link">En savoir plus →</span></a>
+      <a href="assistant-ia-immobilier.html" class="solution-card animate-on-scroll"><div class="solution-icon">🏠</div><div class="solution-badge">Réduisez le temps passé sur la qualification</div><h3>Immobilier</h3><p>Chaque prospect est qualifié automatiquement : budget, zone, type de bien, délai. Vos agents ne traitent que les leads sérieux.</p><div class="solution-features"><div class="solution-feature"><div class="solution-feature-icon">🎯</div><span>Qualification automatique</span></div><div class="solution-feature"><div class="solution-feature-icon">📅</div><span>Prise de RDV visite</span></div><div class="solution-feature"><div class="solution-feature-icon">🔄</div><span>Relances automatiques</span></div><div class="solution-feature"><div class="solution-feature-icon">📊</div><span>Leads transmis qualifiés</span></div></div><span class="solution-link">En savoir plus →</span></a>
+      <a href="assistant-ia-mediabuyer.html" class="solution-card animate-on-scroll"><div class="solution-icon">📊</div><div class="solution-badge">Répondez à chaque lead Meta en moins d'1 minute</div><h3>Mediabuyers & Agences</h3><p>Un lead Meta sans réponse dans l'heure, c'est un lead perdu. L'agent répond instantanément, qualifie et prend le RDV.</p><div class="solution-features"><div class="solution-feature"><div class="solution-feature-icon">⚡</div><span>Réponse instantanée</span></div><div class="solution-feature"><div class="solution-feature-icon">🎯</div><span>Qualification auto</span></div><div class="solution-feature"><div class="solution-feature-icon">📅</div><span>RDV pris automatiquement</span></div><div class="solution-feature"><div class="solution-feature-icon">🔄</div><span>Relances sur les tièdes</span></div></div><span class="solution-link">En savoir plus →</span></a>
+      <a href="assistant-telephonique-ia.html" class="solution-card animate-on-scroll"><div class="solution-icon">🔧</div><div class="solution-badge">Plus aucun appel manqué</div><h3>Artisans & PME</h3><p>Sur un chantier, impossible de répondre. L'agent gère les demandes de devis, prend les RDV et relance les clients.</p><div class="solution-features"><div class="solution-feature"><div class="solution-feature-icon">📞</div><span>Aucun appel manqué</span></div><div class="solution-feature"><div class="solution-feature-icon">📄</div><span>Devis automatiques</span></div><div class="solution-feature"><div class="solution-feature-icon">📅</div><span>Prise de RDV 24h/24</span></div><div class="solution-feature"><div class="solution-feature-icon">🔄</div><span>Relances clients</span></div></div><span class="solution-link">Voir tous les secteurs →</span></a>
+    </div>
+  </section>
+
+  <section class="advantages" id="avantages">
+    <div class="section-label animate-on-scroll">Avantages</div>
+    <h2 class="section-title animate-on-scroll">Pourquoi France <span class="highlight">Agent IA</span></h2>
+    <div class="advantages-grid">
+      <div class="advantage-card animate-on-scroll"><svg class="advantage-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><h3>Rentable dès le 1er mois</h3><p>Charge déductible. Chaque opportunité récupérée rembourse l'investissement.</p></div>
+      <div class="advantage-card animate-on-scroll"><svg class="advantage-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><h3>Disponible 24h/24, 7j/7</h3><p>L'agent ne dort jamais. Vos clients reçoivent une réponse à toute heure, même le week-end.</p></div>
+      <div class="advantage-card animate-on-scroll"><svg class="advantage-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg><h3>Abonnement fixe, sans surprise</h3><p>Un tarif mensuel fixe et prévisible. Résiliable à tout moment.</p></div>
+      <div class="advantage-card animate-on-scroll"><svg class="advantage-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg><h3>Multilingue</h3><p>L'agent parle français, anglais, espagnol, arabe et bien d'autres langues.</p></div>
+      <div class="advantage-card animate-on-scroll"><svg class="advantage-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg><h3>Fiable & précis</h3><p>L'agent gère les cas courants et escalade vers vous uniquement si nécessaire.</p></div>
+      <div class="advantage-card animate-on-scroll"><svg class="advantage-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg><h3>Support dédié en français</h3><p>Une équipe française vous accompagne pour la mise en place et le suivi.</p></div>
+    </div>
+  </section>
+
+  <section class="faq-section" id="faq">
+    <div class="section-label animate-on-scroll">FAQ</div>
+    <h2 class="section-title animate-on-scroll">Questions <span class="highlight">fréquentes</span></h2>
+    <div class="faq-grid">
+      <div class="faq-item animate-on-scroll"><h3>Quelles tâches répétitives peut automatiser un assistant IA pour une PME ?</h3><p>Réponses aux questions fréquentes, qualification des leads, confirmations de RDV, rappels automatiques, relances de prospects, prise de rendez-vous 24h/24, envoi de documents.</p></div>
+      <div class="faq-item animate-on-scroll"><h3>Comment fonctionne l'automatisation WhatsApp pour une entreprise ?</h3><p>L'agent IA est connecté à votre numéro WhatsApp Business existant. Lorsqu'un client envoie un message, l'agent analyse la demande et répond instantanément, 24h/24. La mise en place ne nécessite aucune compétence technique.</p></div>
+      <div class="faq-item animate-on-scroll"><h3>L'assistant IA fonctionne-t-il pour les séminaires et événements ?</h3><p>Oui. Il prend en charge confirmations, FAQ participants, rappels J-7/J-1/H-1, et envoi du replay. <a href="assistant-ia-seminaire-evenement.html" style="color:#60a5fa;">En savoir plus →</a></p></div>
+      <div class="faq-item animate-on-scroll"><h3>Comment qualifier automatiquement les leads immobiliers avec l'IA ?</h3><p>L'agent pose les questions clés (budget, zone, type de bien, délai) avant le premier contact humain. <a href="assistant-ia-immobilier.html" style="color:#60a5fa;">En savoir plus →</a></p></div>
+      <div class="faq-item animate-on-scroll"><h3>Combien coûte l'automatisation IA pour une PME française ?</h3><p>Un setup initial personnalisé puis un abonnement mensuel fixe adapté à votre activité. Contactez-nous sur WhatsApp pour un devis.</p></div>
+      <div class="faq-item animate-on-scroll"><h3>Combien de temps faut-il pour mettre en place un assistant IA ?</h3><p>La mise en place est rapide et entièrement accompagnée. Vous n'avez besoin d'aucune compétence technique.</p></div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contact">
+    <div class="cta-box animate-on-scroll">
+      <h2>Récupérez votre temps. Ne ratez plus un seul prospect.</h2>
+      <p>Discutons de votre activité sur WhatsApp. On vous montre concrètement ce que votre assistant peut faire pour vous.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/33601347652?text=Bonjour,%20je%20voudrais%20voir%20une%20d%C3%A9mo%20!" rel="noopener noreferrer" class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Testez, je vous réponds</a>
+        <span class="cta-subtext">✓ Sans engagement · ✓ Réponse immédiate</span>
+      </div>
+      <div class="cta-features"><span>✓ Sans engagement</span><span>✓ Configuration rapide</span><span>✓ Support en français</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="/assets/logo.png" onerror="this.src='https://i.imgur.com/bKQ6uBz.jpg'" alt="France Agent IA">
+        <p>Automatisation des tâches répétitives pour les entreprises françaises. Réponses clients, qualification leads, WhatsApp, appels, relances — 24h/24.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Solutions</h4>
+        <a href="assistant-ia-seminaire-evenement.html">Séminaires & Événements</a>
+        <a href="assistant-ia-immobilier.html">Immobilier</a>
+        <a href="assistant-ia-mediabuyer.html">Mediabuyers</a>
+        <a href="qualification-lead-whatsapp.html">Qualification leads WhatsApp</a>
+        <a href="assistant-telephonique-ia.html">Assistant téléphonique IA</a>
+        <a href="reponse-automatique-whatsapp-entreprise.html">Réponse WhatsApp automatique</a>
+      </div>
+      <div class="footer-column">
+        <h4>Ressources</h4>
+        <a href="blog.html">Blog</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+      </div>
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <div class="footer-contact">
+          <div class="footer-contact-item"><span>✉️</span><a href="mailto:felix@franceagentia.fr">felix@franceagentia.fr</a></div>
+          <div class="footer-contact-item"><span>💬</span><a href="https://wa.me/33619575432" rel="noopener noreferrer">WhatsApp direct</a></div>
+          <div class="footer-contact-item"><span>📍</span><span>France</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 France Agent IA. Tous droits réservés.</p>
+      <div class="footer-flag"><span class="flag-blue"></span><span class="flag-white"></span><span class="flag-red"></span></div>
+    </div>
+  </footer>
+
+  <script>
+    var observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+    }, observerOptions);
+    document.querySelectorAll('.animate-on-scroll').forEach(function(el) { observer.observe(el); });
+
+    var floatingCta = document.getElementById('floating-cta');
+    var floatingShown = false;
+    function showFloating() {
+      if (!floatingShown && window.innerWidth <= 768) { floatingCta.style.display = 'flex'; floatingShown = true; }
+    }
+    setTimeout(showFloating, 3000);
+    window.addEventListener('scroll', function() { if (window.scrollY > 300) showFloating(); });
+
+    var heroConvs = [
+      { name:'Marie L.', color:'linear-gradient(135deg,#f093fb,#f5576c)', init:'M', messages:[
+        {t:'out',m:'Bonjour, à quelle heure commence le séminaire ?',h:'09:12'},
+        {t:'in',m:'Bonjour Marie 👋 Le séminaire démarre à 9h00. Accueil dès 8h30.',h:'09:12'},
+        {t:'out',m:'Où se gare-t-on ?',h:'09:13'},
+        {t:'in',m:'Parking gratuit niveau -1, entrée rue du Commerce. 🅿️',h:'09:13'}
+      ]},
+      { name:'Thomas R.', color:'linear-gradient(135deg,#4facfe,#00f2fe)', init:'T', messages:[
+        {t:'out',m:'Bonjour je cherche un T3 à Strasbourg',h:'10:22'},
+        {t:'in',m:'Bonjour 👋 Quel est votre budget ?',h:'10:22'},
+        {t:'out',m:'350 000 €',h:'10:23'},
+        {t:'in',m:'Dossier préqualifié ✅ Un conseiller vous contacte aujourd\'hui.',h:'10:24'}
+      ]},
+      { name:'Karim B.', color:'linear-gradient(135deg,#43e97b,#38f9d7)', init:'K', messages:[
+        {t:'out',m:'Bonjour, dispo pour une fuite urgente ?',h:'14:23'},
+        {t:'in',m:'Bonjour 👋 Photo + votre ville ?',h:'14:23'},
+        {t:'out',m:'Strasbourg',h:'14:24'},
+        {t:'in',m:'Technicien disponible ce soir avant 19h ✅',h:'14:25'}
+      ]}
+    ];
+    var heroIdx = 0;
+    var chatContainer = document.getElementById('chat-container');
+
+    function heroSleep(ms){ return new Promise(function(r){setTimeout(r,ms);}); }
+    function heroUpdateContact(conv) {
+      var nameEl = document.querySelector('.whatsapp-info h4');
+      var avatar = document.querySelector('.whatsapp-avatar');
+      if(nameEl) nameEl.textContent = conv.name;
+      if(avatar){ avatar.style.background = conv.color; avatar.textContent = conv.init; }
+    }
+    async function heroPlay(conv) {
+      heroUpdateContact(conv);
+      chatContainer.style.opacity = '0';
+      chatContainer.style.transition = 'opacity 0.4s';
+      await heroSleep(400);
+      chatContainer.innerHTML = '';
+      chatContainer.style.opacity = '1';
+      for(var i=0; i<conv.messages.length; i++){
+        var m = conv.messages[i];
+        if(m.t==='in'){
+          var ty = document.createElement('div');
+          ty.className = 'wa-typing';
+          ty.innerHTML = '<span></span><span></span><span></span>';
+          chatContainer.appendChild(ty);
+          chatContainer.scrollTop = 9999;
+          await heroSleep(1600);
+          chatContainer.removeChild(ty);
+        } else {
+          await heroSleep(800);
+        }
+        var el = document.createElement('div');
+        el.className = 'message message-'+(m.t==='out'?'user':'bot');
+        el.style.cssText = 'opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s';
+        el.innerHTML = m.m+'<div class="message-time">'+m.h+(m.t==='out'?' <span class="message-check">✓✓</span>':'')+'</div>';
+        chatContainer.appendChild(el);
+        chatContainer.scrollTop = 9999;
+        await heroSleep(50);
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        await heroSleep(1400);
+      }
+      await heroSleep(3500);
+    }
+    async function heroLoop() {
+      while(true){ await heroPlay(heroConvs[heroIdx]); heroIdx = (heroIdx + 1) % heroConvs.length; }
+    }
+    heroLoop();
+  </script>
+</body>
+</html>
