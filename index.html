@@ -72,7 +72,7 @@
     .stat { text-align: center; }
     .stat-number { font-size: 36px; font-weight: 800; }
     .stat-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
-    .hero-right { position: relative; display: flex; align-items: center; justify-content: center; }
+    .hero-right { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
     .wa-phone { width: 270px; background: #1a1a1a; border-radius: 36px; padding: 8px; box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 30px 70px rgba(0,0,0,0.7); }
     .wa-phone-inner { background: #000; border-radius: 29px; overflow: hidden; }
     .whatsapp-header { background: linear-gradient(135deg,#075e54,#128c7e); padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
@@ -164,7 +164,28 @@
     .flag-white { background: #EDEDED; }
     .flag-red { background: #ED2939; }
     @media (max-width: 1024px) { nav { padding: 15px 30px; } .hero { padding: 120px 30px 80px; } .hero-content { flex-direction: column; } .hero-title { font-size: 40px; } section { padding: 60px 30px; } .problems-grid { grid-template-columns: repeat(2,1fr); } .steps { gap: 40px; flex-wrap: wrap; } .solutions-grid { grid-template-columns: 1fr; } .advantages-grid { grid-template-columns: repeat(2,1fr); } .footer-content { grid-template-columns: 1fr 1fr; gap: 40px; } }
-    @media (max-width: 768px) { .nav-links a:not(.btn-demo):not(.btn-contact):not(.btn-client) { display: none; } .nav-links a.btn-client { padding: 9px 11px; } .btn-client-txt { display: none; } .btn-contact { display: none; } .hero-title { font-size: 32px; } .problems-grid { grid-template-columns: 1fr; } .advantages-grid { grid-template-columns: 1fr; } .stats { gap: 20px; } .cta-box { padding: 40px 20px; } .cta-box h2 { font-size: 28px; } .cta-features { flex-direction: column; gap: 10px; align-items: center; } .footer-content { grid-template-columns: 1fr; } footer { padding: 40px 20px; } .footer-bottom { flex-direction: column; gap: 15px; } .floating-cta { display: flex !important; } section { padding: 60px 20px; } .hero { padding: 90px 20px 40px; } }
+        /* ── Portraits Félix ── */
+    .felix-stage { position: relative; width: 400px; max-width: 100%; }
+    .felix-stage::before { content:""; position:absolute; inset:-8% -12% 0 -12%; background: radial-gradient(ellipse at 50% 35%, rgba(96,165,250,0.22) 0%, rgba(96,165,250,0.08) 42%, transparent 68%); pointer-events:none; }
+    .felix-hero-img { position:relative; display:block; width:100%; height:auto; -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); }
+    .felix-stage .wa-phone { position:absolute; right:-46px; bottom:6px; width:225px; z-index:2; }
+    .felix-caption { text-align:center; margin-top:2px; position:relative; z-index:3; }
+    .felix-caption strong { display:block; font-size:15px; color:#fff; }
+    .felix-caption span { display:block; font-size:12.5px; color:#94a3b8; margin-top:2px; }
+    .felix-caption em { display:block; font-size:12.5px; color:#64748b; margin-top:6px; font-style:italic; }
+    .felix-methode { padding: 0 80px 90px; background:#111827; }
+    .felix-methode-card { max-width: 900px; margin: 0 auto; display:flex; align-items:center; gap:32px; background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:20px; padding:28px; }
+    .felix-methode-card img { width: 320px; max-width:100%; height:auto; border-radius:14px; flex-shrink:0; }
+    .felix-methode-card h3 { font-size:21px; font-weight:700; margin-bottom:10px; }
+    .felix-methode-card p { color:#94a3b8; line-height:1.7; font-size:15px; margin-bottom:14px; }
+    .felix-methode-card a { color:#60a5fa; text-decoration:none; font-weight:600; font-size:14px; }
+@media (max-width: 768px) {
+      .felix-stage { width: 265px; margin: 8px auto 0; }
+      .felix-stage .wa-phone { position: static; width: 230px; margin: -46px auto 0; display:block; transform: none; }
+      .felix-methode { padding: 0 20px 60px; }
+      .felix-methode-card { flex-direction: column; padding: 20px; gap: 18px; }
+      .felix-methode-card img { width: 100%; }
+ .nav-links a:not(.btn-demo):not(.btn-contact):not(.btn-client) { display: none; } .nav-links a.btn-client { padding: 9px 11px; } .btn-client-txt { display: none; } .btn-contact { display: none; } .hero-title { font-size: 32px; } .problems-grid { grid-template-columns: 1fr; } .advantages-grid { grid-template-columns: 1fr; } .stats { gap: 20px; } .cta-box { padding: 40px 20px; } .cta-box h2 { font-size: 28px; } .cta-features { flex-direction: column; gap: 10px; align-items: center; } .footer-content { grid-template-columns: 1fr; } footer { padding: 40px 20px; } .footer-bottom { flex-direction: column; gap: 15px; } .floating-cta { display: flex !important; } section { padding: 60px 20px; } .hero { padding: 90px 20px 40px; } }
   </style>
 </head>
 <body>
@@ -202,6 +223,8 @@
         </div>
       </div>
       <div class="hero-right">
+      <div class="felix-stage">
+        <img src="/assets/felix-hero.webp" alt="Félix Moudivendar, fondateur de France Agent IA" width="840" height="826" fetchpriority="high" class="felix-hero-img">
         <div class="wa-phone">
           <div class="wa-phone-inner">
             <div style="background:#075e54;padding:5px 12px 4px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;font-weight:700;color:white;">9:41</span></div>
@@ -216,6 +239,12 @@
             </div>
           </div>
         </div>
+      </div>
+      </div>
+      <div class="felix-caption">
+        <strong>Félix Moudivendar</strong>
+        <span>Fondateur — France Agent IA</span>
+        <em>« Je conçois et configure personnellement vos automatisations. »</em>
       </div>
     </div>
   </section>
@@ -244,6 +273,18 @@
       <div class="step animate-on-scroll"><div class="step-icon"><span class="step-number">01</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><h3>On configure votre agent</h3><p>Nous paramétrons l'agent selon votre activité, vos cas d'usage et votre ton.</p></div>
       <div class="step animate-on-scroll"><div class="step-icon"><span class="step-number">02</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><h3>L'agent gère les tâches répétitives</h3><p>Il répond, qualifie, confirme, relance. 24h/24, sans jamais se fatiguer.</p></div>
       <div class="step animate-on-scroll"><div class="step-icon"><span class="step-number">03</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3>Vous gérez l'essentiel</h3><p>Les demandes peuvent être préqualifiées selon vos critères avant transmission. Vous gardez le contrôle total.</p></div>
+    </div>
+  </section>
+
+
+  <section class="felix-methode">
+    <div class="felix-methode-card animate-on-scroll">
+      <img src="/assets/felix-methode.webp" alt="Félix Moudivendar travaillant sur une automatisation France Agent IA" width="840" height="560" loading="lazy">
+      <div>
+        <h3>Un interlocuteur du cadrage à la mise en production</h3>
+        <p>Vous échangez directement avec la personne qui conçoit et configure votre automatisation. L'objectif : comprendre votre fonctionnement, automatiser ce qui mérite de l'être et conserver l'humain là où il apporte le plus de valeur.</p>
+        <a href="a-propos.html">Découvrir la méthode →</a>
+      </div>
     </div>
   </section>
 

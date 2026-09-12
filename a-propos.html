@@ -61,7 +61,18 @@
     .nav-links a.btn-client:hover { background: #eef4ff; transform: translateY(-1px); }
     .btn-client svg { flex-shrink: 0; }
     @media (max-width: 768px) { .nav-links a.btn-client { display: inline-flex !important; padding: 9px 11px; } .btn-client-txt { display: none; } }
-</style>
+    .founder-grid { display:flex; gap:34px; align-items:flex-start; margin: 18px 0 8px; }
+    .founder-photo { flex-shrink:0; width: 300px; }
+    .founder-photo img { width:100%; height:auto; border-radius:16px; display:block; }
+    .founder-photo figcaption { text-align:center; margin-top:10px; }
+    .founder-photo figcaption strong { display:block; color:#fff; font-size:14.5px; }
+    .founder-photo figcaption span { display:block; color:#94a3b8; font-size:12.5px; margin-top:2px; }
+    .founder-grid > div { flex:1; }
+    @media(max-width:768px){
+      .founder-grid { flex-direction: column; gap: 18px; }
+      .founder-photo { width: 100%; max-width: 340px; margin: 0 auto; }
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -81,8 +92,16 @@
     <p class="meta">France Agent IA · 2026</p>
     <p><strong>France Agent IA configure des agents IA WhatsApp et vocaux pour les TPE et PME françaises.</strong> Pas d'équipe de 50 personnes, pas de promesses en l'air. Un fondateur qui construit et déploie les automatisations lui-même, avec une méthode en 4 étapes et des limites clairement annoncées.</p>
     <h2>Qui est derrière France Agent IA</h2>
-    <p>Félix Moudivendar, fondateur de France Agent IA (SIRET 98526140300010). Technicien télécom de formation, passé par le terrain avant de se spécialiser dans l'automatisation des flux de communication d'entreprise.</p>
-    <p>Ce parcours terrain donne une perspective particulière : comprendre ce qui se passe réellement dans une entreprise quand un client appelle et que personne ne répond, quand un lead arrive à 22h sans être traité, quand une équipe passe ses matinées à qualifier des prospects plutôt qu'à les convertir.</p>
+    <div class="founder-grid">
+      <figure class="founder-photo">
+        <img src="/assets/felix-a-propos.webp" alt="Portrait de Félix Moudivendar, fondateur de France Agent IA" width="760" height="949" loading="lazy">
+        <figcaption><strong>Félix Moudivendar</strong><span>Fondateur de France Agent IA</span></figcaption>
+      </figure>
+      <div>
+        <p>Félix Moudivendar, fondateur de France Agent IA (SIRET 98526140300010). Technicien télécom de formation, passé par le terrain avant de se spécialiser dans l'automatisation des flux de communication d'entreprise.</p>
+        <p>Ce parcours terrain donne une perspective particulière : comprendre ce qui se passe réellement dans une entreprise quand un client appelle et que personne ne répond, quand un lead arrive à 22h sans être traité, quand une équipe passe ses matinées à qualifier des prospects plutôt qu'à les convertir.</p>
+      </div>
+    </div>
     <h2>La méthode en 4 étapes</h2>
     <h3>1. Cadrage</h3>
     <p>On identifie ensemble le vrai problème : quel flux de communication mobilise le plus de temps sans valeur ajoutée ? Quels sont les critères d'un bon prospect ? Quelles situations doivent toujours passer par un humain ? Cette étape prend généralement 30 à 45 minutes.</p>
