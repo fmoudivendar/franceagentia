@@ -165,11 +165,11 @@
     .flag-red { background: #ED2939; }
     @media (max-width: 1024px) { nav { padding: 15px 30px; } .hero { padding: 120px 30px 80px; } .hero-content { flex-direction: column; } .hero-title { font-size: 40px; } section { padding: 60px 30px; } .problems-grid { grid-template-columns: repeat(2,1fr); } .steps { gap: 40px; flex-wrap: wrap; } .solutions-grid { grid-template-columns: 1fr; } .advantages-grid { grid-template-columns: repeat(2,1fr); } .footer-content { grid-template-columns: 1fr 1fr; gap: 40px; } }
         /* ── Portraits Félix ── */
-    .felix-stage { position: relative; width: 400px; max-width: 100%; }
+    .felix-stage { position: relative; width: 400px; max-width: 100%; margin-right: 95px; }
     .felix-stage::before { content:""; position:absolute; inset:-8% -12% 0 -12%; background: radial-gradient(ellipse at 50% 35%, rgba(96,165,250,0.22) 0%, rgba(96,165,250,0.08) 42%, transparent 68%); pointer-events:none; }
     .felix-hero-img { position:relative; display:block; width:100%; height:auto; -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); }
-    .felix-stage .wa-phone { position:absolute; right:-46px; bottom:6px; width:225px; z-index:2; }
-    .felix-caption { text-align:center; margin-top:2px; position:relative; z-index:3; }
+    .felix-stage .wa-phone { position:absolute; right:-120px; bottom:0; width:205px; z-index:2; }
+    .felix-caption { text-align:center; margin-top:2px; position:relative; z-index:3; max-width:400px; margin-right:95px; }
     .felix-caption strong { display:block; font-size:15px; color:#fff; }
     .felix-caption span { display:block; font-size:12.5px; color:#94a3b8; margin-top:2px; }
     .felix-caption em { display:block; font-size:12.5px; color:#64748b; margin-top:6px; font-style:italic; }
@@ -180,7 +180,8 @@
     .felix-methode-card p { color:#94a3b8; line-height:1.7; font-size:15px; margin-bottom:14px; }
     .felix-methode-card a { color:#60a5fa; text-decoration:none; font-weight:600; font-size:14px; }
 @media (max-width: 768px) {
-      .felix-stage { width: 265px; margin: 8px auto 0; }
+      .felix-stage { width: 265px; margin: 8px auto 0; margin-right:auto; }
+      .felix-caption { margin-right:auto; margin-left:auto; }
       .felix-stage .wa-phone { position: static; width: 230px; margin: -46px auto 0; display:block; transform: none; }
       .felix-methode { padding: 0 20px 60px; }
       .felix-methode-card { flex-direction: column; padding: 20px; gap: 18px; }
@@ -239,7 +240,6 @@
             </div>
           </div>
         </div>
-      </div>
       </div>
       <div class="felix-caption">
         <strong>Félix Moudivendar</strong>
